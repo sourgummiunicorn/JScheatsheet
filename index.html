@@ -154,10 +154,18 @@ isLightOn = true;</code></pre>
       </div></section>
 
       <section id="mission" class="wrap lab mission-section">
-        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">PRACTICE MISSION</p><h2>Predict the next state.</h2></div><p>Think first.<br>Then test your answer.</p></header>
+        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">PRACTICE MISSION</p><h2>Trace three state changes.</h2></div><p>Follow every step.<br>Then test your answer.</p></header>
         <article class="mission-card">
-          <div><p class="mini-label">THE SITUATION</p><h3>A menu starts closed.</h3><pre><code>let isMenuOpen = false;</code></pre><p>Someone clicks the menu button. The code runs:</p><pre><code>isMenuOpen = !isMenuOpen;</code></pre></div>
-          <div class="mission-answer"><p class="mini-label">WHAT IS TRUE NEXT?</p><div class="answer-buttons" role="group" aria-label="Choose the next state"><button type="button" data-answer="false">isMenuOpen = false</button><button type="button" data-answer="true">isMenuOpen = true</button></div><p id="mission-feedback" aria-live="polite">Choose an answer, then explain why.</p><button id="reset-mission" class="text-button" type="button">Reset question ↺</button></div>
+          <div><p class="mini-label">THE SITUATION</p><h3>A fan starts off and still.</h3><pre><code>let isFanOn = false;
+let speed = 0;</code></pre><p>Read the three steps from top to bottom. Each step uses the value created by the step before it.</p><pre><code>// Step 1: click Start
+isFanOn = !isFanOn;
+
+// Step 2: press Faster
+speed = speed + 2;
+
+// Step 3: click Stop
+isFanOn = !isFanOn;</code></pre></div>
+          <div class="mission-answer"><p class="mini-label">WHAT IS TRUE AFTER STEP 3?</p><div class="answer-buttons" role="group" aria-label="Choose the final state"><button type="button" data-answer="off-zero">isFanOn = false<br>speed = 0</button><button type="button" data-answer="on-two">isFanOn = true<br>speed = 2</button><button type="button" data-answer="off-two">isFanOn = false<br>speed = 2</button><button type="button" data-answer="on-zero">isFanOn = true<br>speed = 0</button></div><p id="mission-feedback" aria-live="polite">Trace Step 1, Step 2, then Step 3. Do not skip a line.</p><button id="reset-mission" class="text-button" type="button">Reset question ↺</button></div>
         </article>
       </section>
     </main>
