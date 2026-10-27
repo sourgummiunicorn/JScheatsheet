@@ -38,15 +38,46 @@ button.<span>addEventListener</span>("click", () =&gt; {
       </section>
 
       <nav class="section-nav" aria-label="Learning labs"><div class="wrap nav-inner">
-        <a href="#state"><span>01</span> Variables & state</a>
-        <a href="#logic"><span>02</span> if / else</a>
-        <a href="#lab"><span>03</span> Live lamp lab</a>
-        <a href="#ai"><span>04</span> Explain to AI</a>
-        <a href="#mission"><span>05</span> Practice</a>
+        <a href="#concepts"><span>01</span> Starter toolkit</a>
+        <a href="#state"><span>02</span> Variables & state</a>
+        <a href="#logic"><span>03</span> if / else</a>
+        <a href="#lab"><span>04</span> Live lamp lab</a>
+        <a href="#ai"><span>05</span> Explain to AI</a>
+        <a href="#mission"><span>06</span> Practice</a>
       </div></nav>
 
+      <section id="concepts" class="wrap lab">
+        <header class="section-heading"><div class="section-number">01</div><div><p class="eyebrow">JAVASCRIPT CONCEPTS</p><h2>Your starter toolkit.</h2></div><p>Read each tiny program<br>like a recipe.</p></header>
+        <p class="concept-intro">JavaScript does not need to feel mysterious. It works with different kinds of information, remembers things, makes choices, and talks back to the person using the page.</p>
+        <div class="concept-grid">
+          <article class="concept-card icecream"><span class="concept-icon" aria-hidden="true">🍦</span><p class="mini-label">DATA TYPES</p><h3>Different scoops of information.</h3><pre><code>let scoops = 3;          // number
+let flavor = "cookie dough"; // text
+let isYummy = true;      // yes / no</code></pre><p>A number counts scoops. Text stores words. A boolean answers a yes-or-no question.</p></article>
+          <article class="concept-card candy"><span class="concept-icon" aria-hidden="true">🍬</span><p class="mini-label">VARIABLES</p><h3>A labeled candy jar.</h3><pre><code>let candies = 100;
+candies = candies + 10;</code></pre><p><code>candies</code> is the label on the jar. The amount inside can change from 100 to 110.</p></article>
+          <article class="concept-card lollipop"><span class="concept-icon" aria-hidden="true">🍭</span><p class="mini-label">OPERATORS</p><h3>Math and questions.</h3><pre><code>let total = 5 + 3;
+let hasEnough = total &gt; 6;</code></pre><p><code>+</code> adds. <code>&gt;</code> asks “is this bigger?” Operators help code calculate and compare.</p></article>
+          <article class="concept-card story"><span class="concept-icon" aria-hidden="true">📖</span><p class="mini-label">CONTROL FLOW</p><h3>A choose-your-own-adventure.</h3><pre><code>if (score &gt; 50) {
+  console.log("Pass!");
+} else {
+  console.log("Keep trying!");
+}</code></pre><p>Code follows one path when the answer is true and another path when it is false.</p></article>
+          <article class="concept-card wand"><span class="concept-icon" aria-hidden="true">🪄</span><p class="mini-label">FUNCTIONS</p><h3>A spell you can reuse.</h3><pre><code>function cheer(name) {
+  console.log("Go, " + name + "!");
+}
+
+cheer("Iva");</code></pre><p>A function packages steps under one name. Call it whenever you want those steps again.</p></article>
+          <article class="concept-card eggs"><span class="concept-icon" aria-hidden="true">🥚</span><p class="mini-label">ARRAYS &amp; OBJECTS</p><h3>A carton and a character card.</h3><pre><code>let fruits = ["apple", "banana"];
+let student = {
+  name: "H", age: 12
+};</code></pre><p>An array keeps a list in order. An object groups details that belong to the same thing.</p></article>
+          <article class="concept-card pizza"><span class="concept-icon" aria-hidden="true">🍕</span><p class="mini-label">INPUT &amp; OUTPUT</p><h3>Take an order. Show a result.</h3><pre><code>let topping = prompt("Pick a topping");
+alert("Pizza with " + topping + "!");</code></pre><p><code>prompt</code> listens to a person. <code>alert</code> sends a message back to the screen.</p></article>
+        </div>
+      </section>
+
       <section id="state" class="wrap lab">
-        <header class="section-heading"><div class="section-number">01</div><div><p class="eyebrow">VARIABLES AND STATE</p><h2>What is true right now?</h2></div><p>A variable gives a name<br>to a value.</p></header>
+        <header class="section-heading"><div class="section-number">02</div><div><p class="eyebrow">VARIABLES AND STATE</p><h2>What is true right now?</h2></div><p>A variable gives a name<br>to a value.</p></header>
         <div class="state-grid">
           <article class="explain-card orange">
             <p class="mini-label">USE <code>let</code></p>
@@ -72,7 +103,7 @@ isLightOn = true;</code></pre>
       </section>
 
       <section id="logic" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">02</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
+        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
         <div class="logic-grid">
           <article class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>script.js</span><button class="copy-button" data-copy="ifElse">Copy code ⧉</button></div><pre><code><b>if</b> (isLightOn) {
   lampStatus.textContent = "ON";
@@ -90,7 +121,7 @@ isLightOn = true;</code></pre>
       </div></section>
 
       <section id="lab" class="wrap lab">
-        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">LIVE INTERACTION LAB</p><h2>Make the lamp change state.</h2></div><p>Click the button.<br>Then read the code.</p></header>
+        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">LIVE INTERACTION LAB</p><h2>Make the lamp change state.</h2></div><p>Click the button.<br>Then read the code.</p></header>
         <div class="lamp-lab">
           <article class="lamp-stage" id="lamp-stage">
             <p class="mini-label">BROWSER PREVIEW</p>
@@ -109,7 +140,7 @@ isLightOn = true;</code></pre>
       </section>
 
       <section id="ai" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
+        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
         <div class="ai-grid">
           <article class="prompt-builder">
             <h3>Build a useful prompt</h3>
@@ -123,7 +154,7 @@ isLightOn = true;</code></pre>
       </div></section>
 
       <section id="mission" class="wrap lab mission-section">
-        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">PRACTICE MISSION</p><h2>Predict the next state.</h2></div><p>Think first.<br>Then test your answer.</p></header>
+        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">PRACTICE MISSION</p><h2>Predict the next state.</h2></div><p>Think first.<br>Then test your answer.</p></header>
         <article class="mission-card">
           <div><p class="mini-label">THE SITUATION</p><h3>A menu starts closed.</h3><pre><code>let isMenuOpen = false;</code></pre><p>Someone clicks the menu button. The code runs:</p><pre><code>isMenuOpen = !isMenuOpen;</code></pre></div>
           <div class="mission-answer"><p class="mini-label">WHAT IS TRUE NEXT?</p><div class="answer-buttons" role="group" aria-label="Choose the next state"><button type="button" data-answer="false">isMenuOpen = false</button><button type="button" data-answer="true">isMenuOpen = true</button></div><p id="mission-feedback" aria-live="polite">Choose an answer, then explain why.</p><button id="reset-mission" class="text-button" type="button">Reset question ↺</button></div>
