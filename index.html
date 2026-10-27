@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive JavaScript field guide for beginners.">
+    <title>JavaScript States & Steps — Field Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="topbar">
+      <a class="brand" href="#top"><span>{ }</span> FIELD GUIDE <b>/ JS</b></a>
+      <nav aria-label="Guide navigation"><a href="#state">State</a><a href="#logic">Logic</a><a href="#lab">Lab</a><a href="#mission">Mission</a></nav>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero wrap">
+        <div>
+          <p class="eyebrow">MAKE A PAGE RESPOND</p>
+          <h1>States.<br><span>Steps.</span><br>Something happens.</h1>
+          <p class="hero-copy">JavaScript remembers what is true, listens for an event, and changes the page. Try each idea as you learn it.</p>
+          <a class="primary" href="#state">Start the guide <span aria-hidden="true">↓</span></a>
+        </div>
+        <aside class="hero-card" aria-label="JavaScript idea preview">
+          <div class="window-bar"><i></i><i></i><i></i><span>script.js</span></div>
+          <pre><code><b>let</b> isLightOn = <em>false</em>;
+
+button.<span>addEventListener</span>("click", () =&gt; {
+  isLightOn = !isLightOn;
+});</code></pre>
+          <p>One variable keeps track of the current state. A click changes it.</p>
+        </aside>
+      </section>
+
+      <nav class="section-nav" aria-label="Learning labs"><div class="wrap nav-inner">
+        <a href="#state"><span>01</span> Variables & state</a>
+        <a href="#logic"><span>02</span> if / else</a>
+        <a href="#lab"><span>03</span> Live lamp lab</a>
+        <a href="#ai"><span>04</span> Explain to AI</a>
+        <a href="#mission"><span>05</span> Practice</a>
+      </div></nav>
+
+      <section id="state" class="wrap lab">
+        <header class="section-heading"><div class="section-number">01</div><div><p class="eyebrow">VARIABLES AND STATE</p><h2>What is true right now?</h2></div><p>A variable gives a name<br>to a value.</p></header>
+        <div class="state-grid">
+          <article class="explain-card orange">
+            <p class="mini-label">USE <code>let</code></p>
+            <h3>When the value can change.</h3>
+            <pre><code>let isLightOn = false;
+isLightOn = true;</code></pre>
+            <p>The name stays the same. The value can become something new.</p>
+          </article>
+          <article class="explain-card lavender">
+            <p class="mini-label">USE <code>const</code></p>
+            <h3>When you will not reassign it.</h3>
+            <pre><code>const buttonLabel =
+  "Turn lamp on";</code></pre>
+            <p>Use a clear name so a future reader can understand the value.</p>
+          </article>
+          <article class="state-map">
+            <p class="mini-label">A STATE MAP</p>
+            <div class="state-row"><span class="state off">OFF<br><code>false</code></span><b>click</b><span aria-hidden="true">→</span><span class="state on">ON<br><code>true</code></span></div>
+            <p><code>isLightOn</code> describes the lamp at one moment. It is a boolean, which means it can only be <code>true</code> or <code>false</code>.</p>
+            <div class="state-examples"><code>isMenuOpen = false</code><code>selectedColor = "blue"</code><code>score = 0</code></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="logic" class="reference-section"><div class="wrap lab">
+        <header class="section-heading"><div class="section-number">02</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
+        <div class="logic-grid">
+          <article class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>script.js</span><button class="copy-button" data-copy="ifElse">Copy code ⧉</button></div><pre><code><b>if</b> (isLightOn) {
+  lampStatus.textContent = "ON";
+  lamp.classList.add("glowing");
+} <b>else</b> {
+  lampStatus.textContent = "OFF";
+  lamp.classList.remove("glowing");
+}</code></pre></article>
+          <article class="decision-card">
+            <div><span class="answer true">TRUE</span><p><b>If the light is on</b><br>show ON and add the glow.</p></div>
+            <div><span class="answer false">FALSE</span><p><b>Otherwise</b><br>show OFF and remove the glow.</p></div>
+            <p class="tip-text">Read it aloud: “If this is true, do this. Otherwise, do that.”</p>
+          </article>
+        </div>
+      </div></section>
+
+      <section id="lab" class="wrap lab">
+        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">LIVE INTERACTION LAB</p><h2>Make the lamp change state.</h2></div><p>Click the button.<br>Then read the code.</p></header>
+        <div class="lamp-lab">
+          <article class="lamp-stage" id="lamp-stage">
+            <p class="mini-label">BROWSER PREVIEW</p>
+            <div id="lamp" class="lamp" aria-hidden="true"><span class="bulb"></span><span class="stem"></span><span class="base"></span></div>
+            <p id="lamp-status" class="lamp-status" aria-live="polite">The lamp is OFF</p>
+            <button id="lamp-button" class="lamp-button" type="button">Turn lamp on</button>
+            <p class="event-caption"><code>click</code> is the event that starts the change.</p>
+          </article>
+          <article class="live-code">
+            <div class="code-tabs" role="tablist" aria-label="Choose code file"><button type="button" role="tab" aria-selected="true" data-tab="html">index.html</button><button type="button" role="tab" aria-selected="false" data-tab="css">style.css</button><button type="button" role="tab" aria-selected="false" data-tab="js">script.js</button></div>
+            <pre id="lab-code" aria-live="polite"></pre>
+            <p id="code-explanation" class="code-explanation">HTML creates the objects JavaScript will find and change.</p>
+          </article>
+        </div>
+        <div class="steps"><div><b>1</b><p><strong>Event</strong><br>Someone clicks.</p></div><div><b>2</b><p><strong>State</strong><br><code>isLightOn</code> flips.</p></div><div><b>3</b><p><strong>Update</strong><br>The screen responds.</p></div></div>
+      </section>
+
+      <section id="ai" class="reference-section"><div class="wrap lab">
+        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
+        <div class="ai-grid">
+          <article class="prompt-builder">
+            <h3>Build a useful prompt</h3>
+            <label>What changes?<input id="prompt-state" value="a lamp turns on and off"></label>
+            <label>What starts the change?<input id="prompt-trigger" value="the user clicks #lampButton"></label>
+            <label>What should people see?<input id="prompt-result" value="#lampStatus says ON or OFF"></label>
+            <button id="build-prompt" class="secondary" type="button">Update prompt</button>
+          </article>
+          <article class="prompt-result"><p class="mini-label">COPY THIS INTO CODEX AI</p><pre id="prompt-output">I am making a lamp toggle in HTML, CSS, and JavaScript. Use a boolean named isLightOn. When the user clicks #lampButton, switch the state and update #lampStatus to say ON or OFF. Explain each JavaScript line for a beginner.</pre><button class="copy-button" data-copy="prompt">Copy prompt ⧉</button></article>
+        </div>
+      </div></section>
+
+      <section id="mission" class="wrap lab mission-section">
+        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">PRACTICE MISSION</p><h2>Predict the next state.</h2></div><p>Think first.<br>Then test your answer.</p></header>
+        <article class="mission-card">
+          <div><p class="mini-label">THE SITUATION</p><h3>A menu starts closed.</h3><pre><code>let isMenuOpen = false;</code></pre><p>Someone clicks the menu button. The code runs:</p><pre><code>isMenuOpen = !isMenuOpen;</code></pre></div>
+          <div class="mission-answer"><p class="mini-label">WHAT IS TRUE NEXT?</p><div class="answer-buttons" role="group" aria-label="Choose the next state"><button type="button" data-answer="false">isMenuOpen = false</button><button type="button" data-answer="true">isMenuOpen = true</button></div><p id="mission-feedback" aria-live="polite">Choose an answer, then explain why.</p><button id="reset-mission" class="text-button" type="button">Reset question ↺</button></div>
+        </article>
+      </section>
+    </main>
+    <footer><p>JavaScript States & Steps Field Guide <span>Made for beginner web interactions.</span></p></footer>
+  </body>
+</html>
