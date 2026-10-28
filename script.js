@@ -42,6 +42,42 @@ function showTab(name) {
 $$('.code-tabs button').forEach(button => button.addEventListener('click', () => showTab(button.dataset.tab)));
 showTab('html');
 
+$$('.concept-try').forEach(button => button.addEventListener('click', () => {
+  const play = $(`#play-${button.dataset.play}`);
+  const isOpen = button.getAttribute('aria-expanded') === 'true';
+  button.setAttribute('aria-expanded', String(!isOpen));
+  play.hidden = isOpen;
+  button.textContent = isOpen ? '↗' : '×';
+}));
+
+const typeMessages = {
+  number: '3 is a number. You can count with it or do math.',
+  text: '"mint" is text, also called a string. The quotes hold the letters together.',
+  boolean: 'true is a boolean. A boolean only answers true or false.'
+};
+$$('[data-type-demo]').forEach(button => button.addEventListener('click', () => {
+  $('#data-output').textContent = typeMessages[button.dataset.typeDemo];
+}));
+
+let candyCount = 3;
+function updateCandies() { $('#candy-output').textContent = `candies = ${candyCount}`; }
+$('#candy-minus').addEventListener('click', () => { candyCount -= 1; updateCandies(); });
+$('#candy-plus').addEventListener('click', () => { candyCount += 1; updateCandies(); });
+
+function updateOperator() { const total = Number($('#operator-range').value); $('#operator-output').textContent = `${total} > 6 is ${total > 6}`; }
+$('#operator-range').addEventListener('input', updateOperator);
+
+function updateScore() { const score = Number($('#score-range').value); $('#score-output').textContent = `${score} → ${score > 50 ? 'Pass!' : 'Keep trying!'}`; }
+$('#score-range').addEventListener('input', updateScore);
+
+$('#cheer-button').addEventListener('click', () => { const name = $('#cheer-name').value.trim() || 'friend'; $('#cheer-output').textContent = `Go, ${name}!`; });
+
+const fruits = ['apple', 'banana'];
+$('#add-fruit').addEventListener('click', () => { if (!fruits.includes('mango')) fruits.push('mango'); $('#collection-output').textContent = `fruits = [${fruits.map(fruit => `"${fruit}"`).join(', ')}]`; });
+$('#show-age').addEventListener('click', () => { $('#collection-output').textContent = 'student.age = 12'; });
+
+$('#make-pizza').addEventListener('click', () => { const topping = $('#topping-input').value.trim() || 'cheese'; $('#pizza-output').textContent = `Pizza with ${topping} is ready!`; });
+
 function buildPrompt() {
   const state = $('#prompt-state').value.trim();
   const trigger = $('#prompt-trigger').value.trim();
