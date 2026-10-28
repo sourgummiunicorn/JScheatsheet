@@ -74,7 +74,7 @@ $('#cheer-button').addEventListener('click', () => { const name = $('#cheer-name
 
 const fruits = ['apple', 'banana'];
 $('#add-fruit').addEventListener('click', () => { if (!fruits.includes('mango')) fruits.push('mango'); $('#collection-output').textContent = `fruits = [${fruits.map(fruit => `"${fruit}"`).join(', ')}]`; });
-$('#show-age').addEventListener('click', () => { $('#collection-output').textContent = 'student.age = 12'; });
+$('#show-age').addEventListener('click', () => { $('#collection-output').textContent = 'students[0].age = 24'; });
 
 $('#make-pizza').addEventListener('click', () => { const topping = $('#topping-input').value.trim() || 'cheese'; $('#pizza-output').textContent = `Pizza with ${topping} is ready!`; });
 
