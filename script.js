@@ -101,16 +101,3 @@ $$('.copy-button').forEach(button => button.addEventListener('click', async () =
   setTimeout(() => { button.textContent = original; }, 1300);
 }));
 
-$$('[data-answer]').forEach(button => button.addEventListener('click', () => {
-  const correct = button.dataset.answer === 'off-two';
-  $$('.answer-buttons button').forEach(item => item.classList.remove('selected', 'wrong'));
-  button.classList.add(correct ? 'selected' : 'wrong');
-  $('#mission-feedback').textContent = correct
-    ? 'Correct. Step 1 flips false to true. Step 2 raises speed from 0 to 2. Step 3 flips true back to false. The fan stops, but its speed value is still 2.'
-    : 'Try again. Trace one variable at a time: What happens to isFanOn twice? What happens to speed once?';
-}));
-
-$('#reset-mission').addEventListener('click', () => {
-  $$('.answer-buttons button').forEach(button => button.classList.remove('selected', 'wrong'));
-  $('#mission-feedback').textContent = 'Trace Step 1, Step 2, then Step 3. Do not skip a line.';
-});
