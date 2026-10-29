@@ -67,6 +67,18 @@ $('#candy-plus').addEventListener('click', () => { candyCount += 1; updateCandie
 function updateOperator() { const total = Number($('#operator-range').value); $('#operator-output').textContent = `${total} > 6 is ${total > 6}`; }
 $('#operator-range').addEventListener('input', updateOperator);
 
+const comparisonPairs = {
+  converted: { label: '"2" and 2', results: [['==', true], ['===', false], ['!=', false], ['!==', true]] },
+  different: { label: '1 and 2', results: [['==', false], ['===', false], ['!=', true], ['!==', true]] }
+};
+function showComparison(name) {
+  const pair = comparisonPairs[name];
+  $$('[data-comparison]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.comparison === name)));
+  $('#comparison-output').innerHTML = `<strong>${pair.label}</strong>${pair.results.map(([operator, result]) => `<span><code>${operator}</code> → <b class="${result ? 'is-true' : 'is-false'}">${result}</b></span>`).join('')}`;
+}
+$$('[data-comparison]').forEach(button => button.addEventListener('click', () => showComparison(button.dataset.comparison)));
+showComparison('converted');
+
 function updateScore() { const score = Number($('#score-range').value); $('#score-output').textContent = `${score} → ${score > 50 ? 'Pass!' : 'Keep trying!'}`; }
 $('#score-range').addEventListener('input', updateScore);
 
