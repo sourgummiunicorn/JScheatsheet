@@ -15,7 +15,7 @@
     <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <a class="brand" href="#top"><span>{ }</span> FIELD GUIDE <b>/ JS</b></a>
-      <nav aria-label="Guide navigation"><a href="#state">State</a><a href="#logic">Logic</a><a href="#lab">Lab</a></nav>
+      <nav aria-label="Guide navigation"><a href="#state">State</a><a href="#logic">Logic</a><a href="#lab">Lab</a><a href="#events">Events</a></nav>
     </header>
 
     <main id="main">
@@ -42,7 +42,8 @@ button.<span>addEventListener</span>("click", () =&gt; {
         <a href="#state"><span>02</span> Variables & state</a>
         <a href="#logic"><span>03</span> if / else</a>
         <a href="#lab"><span>04</span> Live lamp lab</a>
-        <a href="#ai"><span>05</span> Explain to AI</a>
+        <a href="#events"><span>05</span> Events lab</a>
+        <a href="#ai"><span>06</span> Explain to AI</a>
       </div></nav>
 
       <section id="concepts" class="wrap lab">
@@ -138,8 +139,41 @@ isLightOn = true;</code></pre>
         <div class="steps"><div><b>1</b><p><strong>Event</strong><br>Someone clicks.</p></div><div><b>2</b><p><strong>State</strong><br><code>isLightOn</code> flips.</p></div><div><b>3</b><p><strong>Update</strong><br>The screen responds.</p></div></div>
       </section>
 
+      <section id="events" class="reference-section"><div class="wrap lab">
+        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">EVENTS</p><h2>Notice what people do.</h2></div><p>An event is something<br>a person does.</p></header>
+        <div class="events-grid">
+          <article class="event-guide">
+            <p class="mini-label">EVENT CHEAT SHEET</p>
+            <h3>JavaScript can listen.</h3>
+            <dl class="event-list">
+              <div><dt><code>onclick</code></dt><dd>One click.</dd></div>
+              <div><dt><code>ondblclick</code></dt><dd>Two quick clicks.</dd></div>
+              <div><dt><code>onmouseover</code></dt><dd>Pointer moves over.</dd></div>
+              <div><dt><code>onmousedown</code> / <code>onmouseup</code></dt><dd>Mouse button goes down / up.</dd></div>
+              <div><dt><code>onkeydown</code></dt><dd>A keyboard key is pressed.</dd></div>
+            </dl>
+            <p class="syntax-note"><code>onclick</code> is the event name. In new code, use <code>addEventListener()</code> to listen for it.</p>
+          </article>
+          <article class="event-playground">
+            <p class="mini-label">TRY EVENTS</p>
+            <h3>Make something happen.</h3>
+            <div class="event-controls">
+              <button id="event-click" type="button">Click me</button>
+              <button id="event-double" type="button">Double-click me</button>
+              <button id="event-hover" type="button">Hover over me</button>
+              <button id="event-mouse" type="button">Press + release</button>
+              <label for="event-key">Press any key<input id="event-key" type="text" placeholder="Type here"></label>
+            </div>
+            <div class="event-log-wrap"><div id="event-log" class="event-log" aria-live="polite" aria-label="Event log"><p>Event log: Try a control above.</p></div><button id="clear-events" class="clear-events" type="button">Clear log</button></div>
+          </article>
+        </div>
+        <article class="event-code"><p class="mini-label">TWO WAYS TO LISTEN</p><pre><code>clickButton.onclick = doThing; // event-property style
+
+clickButton.addEventListener("click", doThing); // use this</code></pre><p>Both listen for a click. <code>addEventListener()</code> is the flexible pattern you will see most often.</p></article>
+      </div></section>
+
       <section id="ai" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
+        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
         <div class="ai-grid">
           <article class="prompt-builder">
             <h3>Build a useful prompt</h3>

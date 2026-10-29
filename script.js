@@ -90,6 +90,22 @@ $('#show-age').addEventListener('click', () => { $('#collection-output').textCon
 
 $('#make-pizza').addEventListener('click', () => { const topping = $('#topping-input').value.trim() || 'cheese'; $('#pizza-output').textContent = `Pizza with ${topping} is ready!`; });
 
+const eventLog = $('#event-log');
+function addEventLog(message) {
+  const item = document.createElement('p');
+  item.textContent = message;
+  eventLog.prepend(item);
+  while (eventLog.children.length > 6) eventLog.lastElementChild.remove();
+}
+$('#event-click').addEventListener('click', () => addEventLog('🖱️ onclick: You clicked the button!'));
+$('#event-double').addEventListener('dblclick', () => addEventLog('✨ ondblclick: You double-clicked!'));
+$('#event-hover').addEventListener('mouseover', () => addEventLog('👋 onmouseover: Your pointer moved over the button!'));
+const mouseEventButton = $('#event-mouse');
+mouseEventButton.addEventListener('mousedown', () => addEventLog('⬇️ onmousedown: Mouse button pressed down.'));
+mouseEventButton.addEventListener('mouseup', () => addEventLog('⬆️ onmouseup: Mouse button released.'));
+$('#event-key').addEventListener('keydown', event => addEventLog(`⌨️ onkeydown: You pressed "${event.key}".`));
+$('#clear-events').addEventListener('click', () => { eventLog.innerHTML = '<p>Event log: Try a control above.</p>'; });
+
 function buildPrompt() {
   const state = $('#prompt-state').value.trim();
   const trigger = $('#prompt-trigger').value.trim();
