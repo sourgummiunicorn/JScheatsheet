@@ -186,25 +186,75 @@ while (count &gt; 0) {
         <div class="quiz-workspace">
           <div class="quiz-tabs" role="tablist" aria-label="Choose a code file to write"><button type="button" role="tab" aria-selected="true" data-quiz-tab="html">index.html</button><button type="button" role="tab" aria-selected="false" data-quiz-tab="css">style.css</button><button type="button" role="tab" aria-selected="false" data-quiz-tab="js">script.js</button></div>
           <div class="quiz-editor">
-            <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" data-quiz-code="html" spellcheck="false">&lt;!-- Make 3 question sections. Give each answer a button. --&gt;
-&lt;section class="question"&gt;
-  &lt;h2&gt;Question 1: Write your question here&lt;/h2&gt;
-  &lt;button&gt;Choice A&lt;/button&gt;
-  &lt;button&gt;Choice B&lt;/button&gt;
-&lt;/section&gt;</textarea>
-            <label class="sr-only" for="quiz-css">CSS quiz draft</label><textarea id="quiz-css" class="quiz-code" data-quiz-code="css" spellcheck="false" hidden>/* Give your quiz a personality. */
-.question {
-  padding: 1rem;
-}</textarea>
-            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" data-quiz-code="js" spellcheck="false" hidden>// Listen for answers, check them, then give feedback.
-function checkAnswer(event) {
-  // Is this answer correct?
+            <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" data-quiz-code="html" spellcheck="false">&lt;!-- STEP 1: Change the topic and questions below. --&gt;
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+  &lt;script src="script.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class="quiz"&gt;
+    &lt;h1&gt;My Quiz Title&lt;/h1&gt;
+    &lt;p id="feedback"&gt;Pick an answer!&lt;/p&gt;
+
+    &lt;!-- STEP 2: Make each question about your topic. --&gt;
+    &lt;section class="question"&gt;
+      &lt;h2&gt;1. Which answer is correct?&lt;/h2&gt;
+      &lt;button class="answer" data-correct="true"&gt;Correct answer&lt;/button&gt;
+      &lt;button class="answer" data-correct="false"&gt;Another answer&lt;/button&gt;
+    &lt;/section&gt;
+
+    &lt;section class="question"&gt;
+      &lt;h2&gt;2. Write your second question.&lt;/h2&gt;
+      &lt;button class="answer" data-correct="false"&gt;Choice A&lt;/button&gt;
+      &lt;button class="answer" data-correct="true"&gt;Choice B&lt;/button&gt;
+    &lt;/section&gt;
+
+    &lt;section class="question"&gt;
+      &lt;h2&gt;3. Write your third question.&lt;/h2&gt;
+      &lt;button class="answer" data-correct="true"&gt;Choice A&lt;/button&gt;
+      &lt;button class="answer" data-correct="false"&gt;Choice B&lt;/button&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+            <label class="sr-only" for="quiz-css">CSS quiz draft</label><textarea id="quiz-css" class="quiz-code" data-quiz-code="css" spellcheck="false" hidden>/* STEP 3: Give your quiz a personality. */
+body {
+  font-family: sans-serif;
+  background: peachpuff;
 }
 
-// Add event listeners to your choices.</textarea>
+.quiz, .question {
+  padding: 1rem;
+}
+
+.answer {
+  margin: .25rem;
+  padding: .5rem;
+}</textarea>
+            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" data-quiz-code="js" spellcheck="false">// STEP 4: Find the buttons and feedback message.
+const answers = document.querySelectorAll(".answer");
+const feedback = document.querySelector("#feedback");
+
+// STEP 5: This function checks one clicked answer.
+function checkAnswer(event) {
+  const isCorrect = event.target.dataset.correct === "true";
+
+  if (isCorrect) {
+    feedback.textContent = "🎉 Correct! Great job!";
+  } else {
+    feedback.textContent = "Try again! 💡";
+  }
+}
+
+// STEP 6: A loop gives every answer button a click listener.
+answers.forEach(function (answer) {
+  answer.addEventListener("click", checkAnswer);
+});</textarea>
             <div class="quiz-editor-actions"><button id="check-quiz" class="secondary" type="button">Check my draft</button><button id="download-quiz" class="quiz-save" type="button">Download quiz files ↓</button><output id="quiz-save-message" aria-live="polite"></output></div>
           </div>
-          <aside class="quiz-checklist" aria-live="polite"><p class="mini-label">DRAFT CHECKLIST</p><h3>What have you established?</h3><ul><li id="check-questions">○ 3+ questions</li><li id="check-events">○ 3+ events or a loop that adds events</li><li id="check-logic">○ Answer-checking logic</li><li id="check-feedback">○ Feedback for the player</li></ul><p>Write your own code here. When you are ready, move it into your HTML, CSS, and JavaScript project to run it.</p></aside>
+          <aside class="quiz-checklist" aria-live="polite"><p class="mini-label">FOLLOW THE STEPS</p><h3>Start with the template.</h3><ol class="quiz-steps"><li>Choose a topic you care about.</li><li>Replace the three sample questions.</li><li>Mark the correct choices with <code>data-correct="true"</code>.</li><li>Change the colors and feedback words.</li><li>Test each button, then download your files.</li></ol><p class="mini-label">DRAFT CHECKLIST</p><h3>What have you established?</h3><ul><li id="check-questions">○ 3+ questions</li><li id="check-events">○ 3+ events or a loop that adds events</li><li id="check-logic">○ Answer-checking logic</li><li id="check-feedback">○ Feedback for the player</li></ul><p>Use the starter as your first version. When it feels clear, make it yours.</p></aside>
         </div>
       </section>
 
