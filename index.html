@@ -15,7 +15,7 @@
     <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <a class="brand" href="#top"><span>{ }</span> FIELD GUIDE <b>/ JS</b></a>
-      <div class="topbar-tools"><nav aria-label="Guide navigation"><a href="#state">State</a><a href="#logic">Logic</a><a href="#functions">Functions</a><a href="#loops">Loops</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">💡</span><span class="theme-label">Light</span></button></div>
+      <div class="topbar-tools"><nav aria-label="Guide navigation"><a href="#state">State</a><a href="#functions">Functions</a><a href="#logic">Logic</a><a href="#loops">Loops</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">💡</span><span class="theme-label">Light</span></button></div>
     </header>
 
     <main id="main">
@@ -40,8 +40,8 @@ button.<span>addEventListener</span>("click", () =&gt; {
       <nav class="section-nav" aria-label="Learning labs"><div class="wrap nav-inner">
         <a href="#concepts"><span>01</span> Starter toolkit</a>
         <a href="#state"><span>02</span> Variables & state</a>
-        <a href="#logic"><span>03</span> if / else</a>
-        <a href="#functions"><span>04</span> Functions</a>
+        <a href="#functions"><span>03</span> Functions</a>
+        <a href="#logic"><span>04</span> if / else</a>
         <a href="#loops"><span>05</span> Loops</a>
         <a href="#ai"><span>06</span> Explain to AI</a>
       </div></nav>
@@ -101,8 +101,26 @@ isLightOn = true;</code></pre>
         </div>
       </section>
 
+      <section id="functions" class="wrap lab">
+        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">FUNCTIONS: INPUTS AND OUTPUTS</p><h2>Give a function something. Get a result.</h2></div><p>Inputs go in.<br>Outputs come back.</p></header>
+        <div class="function-grid">
+          <article class="function-card">
+            <p class="mini-label">PARAMETERS VS ARGUMENTS</p><h3>Recipe blanks and real ingredients.</h3><pre><code>function makePizza(crust) {
+  return "Pizza with " + crust;
+}
+
+makePizza("thin");</code></pre><p><code>crust</code> is a <b>parameter</b>: a blank in the recipe. <code>"thin"</code> is an <b>argument</b>: the real value you give it.</p>
+          </article>
+          <article class="converter-card">
+            <p class="mini-label">TRY A FUNCTION</p><h3>Temperature converter</h3><pre><code>function celsiusToFahrenheit(c) {
+  return (c * 9 / 5) + 32;
+}</code></pre><label for="celsius-input">Input: Celsius <input id="celsius-input" type="number" value="15" inputmode="decimal"></label><button id="convert-temperature" class="secondary" type="button">Run function()</button><output id="temperature-output" aria-live="polite">15°C → 59°F</output><p>The number in <code>c</code> is the input. <code>return</code> sends the answer back out.</p>
+          </article>
+        </div>
+      </section>
+
       <section id="logic" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
+        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
         <div class="logic-grid">
           <article class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>script.js</span><button class="copy-button" data-copy="energy">Copy code ⧉</button></div><pre><code><b>if</b> (energyLevel &lt; 60) {
   activity = "rest";
@@ -120,24 +138,6 @@ isLightOn = true;</code></pre>
         </div>
         <article class="energy-demo" aria-labelledby="energy-demo-title"><div><p class="mini-label">TRY IT</p><h3 id="energy-demo-title">Set an energy level.</h3><label class="energy-range" for="energy-range">energyLevel: <output id="energy-number">80</output><input id="energy-range" type="range" min="0" max="100" value="80"></label></div><output id="energy-output" class="energy-output" aria-live="polite">80 → activity = "create"</output></article>
       </div></section>
-
-      <section id="functions" class="wrap lab">
-        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">FUNCTIONS: INPUTS AND OUTPUTS</p><h2>Give a function something. Get a result.</h2></div><p>Inputs go in.<br>Outputs come back.</p></header>
-        <div class="function-grid">
-          <article class="function-card">
-            <p class="mini-label">PARAMETERS VS ARGUMENTS</p><h3>Recipe blanks and real ingredients.</h3><pre><code>function makePizza(crust) {
-  return "Pizza with " + crust;
-}
-
-makePizza("thin");</code></pre><p><code>crust</code> is a <b>parameter</b>: a blank in the recipe. <code>"thin"</code> is an <b>argument</b>: the real value you give it.</p>
-          </article>
-          <article class="converter-card">
-            <p class="mini-label">TRY A FUNCTION</p><h3>Temperature converter</h3><pre><code>function celsiusToFahrenheit(c) {
-  return (c * 9 / 5) + 32;
-}</code></pre><label for="celsius-input">Input: Celsius <input id="celsius-input" type="number" value="15" inputmode="decimal"></label><button id="convert-temperature" class="secondary" type="button">Run function()</button><output id="temperature-output" aria-live="polite">15°C → 59°F</output><p>The number in <code>c</code> is the input. <code>return</code> sends the answer back out.</p>
-          </article>
-        </div>
-      </section>
 
       <section id="loops" class="reference-section"><div class="wrap lab">
         <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">LOOPS</p><h2>Repeat a step on purpose.</h2></div><p>A loop repeats.<br>A condition stops it.</p></header>
