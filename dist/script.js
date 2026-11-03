@@ -136,24 +136,55 @@ function checkQuizDraft() {
   setChecklist('#check-logic', hasLogic, 'Answer-checking logic');
   setChecklist('#check-feedback', hasFeedback, 'Feedback for the player');
 }
-function saveQuizDraft() {
-  localStorage.setItem('js-field-guide-quiz-draft', JSON.stringify(quizDraft()));
-  $('#quiz-save-message').textContent = 'Saved on this device ✓';
+function crc32(bytes) {
+  let crc = 0xffffffff;
+  for (const byte of bytes) {
+    crc ^= byte;
+    for (let bit = 0; bit < 8; bit += 1) crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0);
+  }
+  return (crc ^ 0xffffffff) >>> 0;
 }
-function loadQuizDraft() {
-  const saved = localStorage.getItem('js-field-guide-quiz-draft');
-  if (!saved) return;
-  try {
-    const draft = JSON.parse(saved);
-    ['html', 'css', 'js', 'idea', 'outcome', 'interaction'].forEach(key => {
-      const field = $(`#quiz-${key}`);
-      if (field && typeof draft[key] === 'string') field.value = draft[key];
-    });
-  } catch { localStorage.removeItem('js-field-guide-quiz-draft'); }
+function zipFiles(files) {
+  const encoder = new TextEncoder();
+  const localParts = [];
+  const centralParts = [];
+  let localSize = 0;
+  for (const [name, source] of Object.entries(files)) {
+    const nameBytes = encoder.encode(name);
+    const fileBytes = encoder.encode(source);
+    const crc = crc32(fileBytes);
+    const localHeader = new Uint8Array(30 + nameBytes.length);
+    const localView = new DataView(localHeader.buffer);
+    localView.setUint32(0, 0x04034b50, true); localView.setUint16(4, 20, true); localView.setUint16(6, 0x0800, true);
+    localView.setUint32(14, crc, true); localView.setUint32(18, fileBytes.length, true); localView.setUint32(22, fileBytes.length, true); localView.setUint16(26, nameBytes.length, true);
+    localHeader.set(nameBytes, 30);
+    localParts.push(localHeader, fileBytes);
+    const centralHeader = new Uint8Array(46 + nameBytes.length);
+    const centralView = new DataView(centralHeader.buffer);
+    centralView.setUint32(0, 0x02014b50, true); centralView.setUint16(4, 20, true); centralView.setUint16(6, 20, true); centralView.setUint16(8, 0x0800, true);
+    centralView.setUint32(16, crc, true); centralView.setUint32(20, fileBytes.length, true); centralView.setUint32(24, fileBytes.length, true); centralView.setUint16(28, nameBytes.length, true); centralView.setUint32(42, localSize, true);
+    centralHeader.set(nameBytes, 46);
+    centralParts.push(centralHeader);
+    localSize += localHeader.length + fileBytes.length;
+  }
+  const centralSize = centralParts.reduce((total, part) => total + part.length, 0);
+  const end = new Uint8Array(22);
+  const endView = new DataView(end.buffer);
+  endView.setUint32(0, 0x06054b50, true); endView.setUint16(8, Object.keys(files).length, true); endView.setUint16(10, Object.keys(files).length, true); endView.setUint32(12, centralSize, true); endView.setUint32(16, localSize, true);
+  return new Blob([...localParts, ...centralParts, end], { type: 'application/zip' });
+}
+function downloadQuizFiles() {
+  const draft = quizDraft();
+  const zip = zipFiles({ 'index.html': draft.html, 'style.css': draft.css, 'script.js': draft.js, 'README.txt': 'My quiz project\n\nOpen index.html in a browser after you finish connecting your CSS and JavaScript files.\n' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(zip);
+  link.download = 'my-quiz-project.zip';
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  $('#quiz-save-message').textContent = 'Downloaded to your browser downloads ✓';
 }
 $('#check-quiz').addEventListener('click', checkQuizDraft);
-$('#save-quiz').addEventListener('click', saveQuizDraft);
-loadQuizDraft();
+$('#download-quiz').addEventListener('click', downloadQuizFiles);
 showQuizTab('html');
 
 const copyText = {
