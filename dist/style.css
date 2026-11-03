@@ -50,3 +50,4 @@ html[data-theme="dark"] .decision-card>div:first-child { background:#b8d7aa; } h
 html[data-theme="dark"] .energy-demo { background:#b8d7aa; color:#35251b; } html[data-theme="dark"] .operator-guide { background:rgba(53,37,27,.08); } html[data-theme="dark"] .operator-cheats span { background:#fffdf6; color:#35251b; border-color:#35251b; }
 html[data-theme="dark"] .concept-card pre,html[data-theme="dark"] .explain-card pre,html[data-theme="dark"] .function-card pre,html[data-theme="dark"] .converter-card pre,html[data-theme="dark"] .loop-card pre { background:#2b211a; color:#fff1e4; }
 html[data-theme="dark"] .copy-button { background:#fffdf6; color:#35251b; }
+html[data-theme="dark"] .energy-output,html[data-theme="dark"] .converter-card output,html[data-theme="dark"] .loop-card output,html[data-theme="dark"] .concept-play output { background:#fffdf6; color:#161210; border:2px solid #35251b; }
