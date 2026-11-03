@@ -15,7 +15,7 @@
     <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <a class="brand" href="#top"><span>{ }</span> FIELD GUIDE <b>/ JS</b></a>
-      <div class="topbar-tools"><nav aria-label="Guide navigation"><a href="#state">State</a><a href="#functions">Functions</a><a href="#logic">Logic</a><a href="#loops">Loops</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">💡</span><span class="theme-label">Light</span></button></div>
+      <div class="topbar-tools"><nav aria-label="Guide navigation"><a href="#state">State</a><a href="#functions">Functions</a><a href="#logic">Logic</a><a href="#loops">Loops</a><a href="#quiz-builder">Exercise</a></nav><button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode" title="Switch to dark mode"><span class="theme-icon" aria-hidden="true">💡</span><span class="theme-label">Light</span></button></div>
     </header>
 
     <main id="main">
@@ -44,6 +44,7 @@ button.<span>addEventListener</span>("click", () =&gt; {
         <a href="#logic"><span>04</span> if / else</a>
         <a href="#loops"><span>05</span> Loops</a>
         <a href="#ai"><span>06</span> Explain to AI</a>
+        <a href="#quiz-builder"><span>07</span> Build a quiz</a>
       </div></nav>
 
       <section id="concepts" class="wrap lab">
@@ -169,6 +170,43 @@ while (count &gt; 0) {
           <article class="prompt-result"><p class="mini-label">COPY THIS INTO CODEX AI</p><pre id="prompt-output">I am building an interactive web page in HTML, CSS, and JavaScript. I want a temperature in Celsius to become Fahrenheit. When the user clicks a Convert button, show the converted temperature on the page. Use clear variable names and explain each JavaScript line for a beginner.</pre><button class="copy-button" data-copy="prompt">Copy prompt ⧉</button></article>
         </div>
       </div></section>
+
+      <section id="quiz-builder" class="wrap lab">
+        <header class="section-heading"><div class="section-number">07</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Build a quiz with personality.</h2></div><p>Plan it. Code it.<br>Make it playful.</p></header>
+        <div class="quiz-brief">
+          <article><p class="mini-label">GOAL</p><h3>Turn questions into a small game.</h3><p>Create an interactive quiz that teaches something in a playful way. It could feel like a game show, mystery, personality test, or something entirely yours.</p></article>
+          <article><p class="mini-label">PLANNING</p><h3>Decide before you code.</h3><ul><li>What should players learn?</li><li>Who is the quiz for?</li><li>Will they click, press keys, or discover surprises?</li></ul></article>
+          <article><p class="mini-label">REQUIREMENTS</p><h3>Your quiz needs:</h3><ul><li>3+ multiple-choice questions</li><li>3+ event listeners</li><li>Functions, loops, or conditionals</li><li>Feedback: text, emoji, or sound</li></ul></article>
+        </div>
+        <div class="quiz-plan">
+          <label>Quiz idea<input id="quiz-idea" placeholder="Example: A spooky movie trivia game"></label>
+          <label>Learning outcome<input id="quiz-outcome" placeholder="Example: Players identify three film genres"></label>
+          <label>Interaction plan<input id="quiz-interaction" placeholder="Example: Click choices and reveal a clue"></label>
+        </div>
+        <div class="quiz-workspace">
+          <div class="quiz-tabs" role="tablist" aria-label="Choose a code file to write"><button type="button" role="tab" aria-selected="true" data-quiz-tab="html">index.html</button><button type="button" role="tab" aria-selected="false" data-quiz-tab="css">style.css</button><button type="button" role="tab" aria-selected="false" data-quiz-tab="js">script.js</button></div>
+          <div class="quiz-editor">
+            <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" data-quiz-code="html" spellcheck="false">&lt;!-- Make 3 question sections. Give each answer a button. --&gt;
+&lt;section class="question"&gt;
+  &lt;h2&gt;Question 1: Write your question here&lt;/h2&gt;
+  &lt;button&gt;Choice A&lt;/button&gt;
+  &lt;button&gt;Choice B&lt;/button&gt;
+&lt;/section&gt;</textarea>
+            <label class="sr-only" for="quiz-css">CSS quiz draft</label><textarea id="quiz-css" class="quiz-code" data-quiz-code="css" spellcheck="false" hidden>/* Give your quiz a personality. */
+.question {
+  padding: 1rem;
+}</textarea>
+            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" data-quiz-code="js" spellcheck="false" hidden>// Listen for answers, check them, then give feedback.
+function checkAnswer(event) {
+  // Is this answer correct?
+}
+
+// Add event listeners to your choices.</textarea>
+            <div class="quiz-editor-actions"><button id="check-quiz" class="secondary" type="button">Check my draft</button><button id="save-quiz" class="quiz-save" type="button">Save on this device</button><output id="quiz-save-message" aria-live="polite"></output></div>
+          </div>
+          <aside class="quiz-checklist" aria-live="polite"><p class="mini-label">DRAFT CHECKLIST</p><h3>What have you established?</h3><ul><li id="check-questions">○ 3+ questions</li><li id="check-events">○ 3+ events or a loop that adds events</li><li id="check-logic">○ Answer-checking logic</li><li id="check-feedback">○ Feedback for the player</li></ul><p>Write your own code here. When you are ready, move it into your HTML, CSS, and JavaScript project to run it.</p></aside>
+        </div>
+      </section>
 
     </main>
     <footer><p>© Iva Li</p></footer>

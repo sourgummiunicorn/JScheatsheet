@@ -101,6 +101,61 @@ function buildPrompt() {
 
 $('#build-prompt').addEventListener('click', buildPrompt);
 
+const quizTabs = $$('[data-quiz-tab]');
+const quizCodeEditors = $$('[data-quiz-code]');
+function showQuizTab(name) {
+  quizTabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.quizTab === name)));
+  quizCodeEditors.forEach(editor => { editor.hidden = editor.dataset.quizCode !== name; });
+}
+quizTabs.forEach(tab => tab.addEventListener('click', () => showQuizTab(tab.dataset.quizTab)));
+
+function quizDraft() {
+  return {
+    html: $('#quiz-html').value,
+    css: $('#quiz-css').value,
+    js: $('#quiz-js').value,
+    idea: $('#quiz-idea').value,
+    outcome: $('#quiz-outcome').value,
+    interaction: $('#quiz-interaction').value
+  };
+}
+function setChecklist(id, complete, text) {
+  const item = $(id);
+  item.textContent = `${complete ? '✓' : '○'} ${text}`;
+  item.classList.toggle('complete', complete);
+}
+function checkQuizDraft() {
+  const draft = quizDraft();
+  const questionCount = (draft.html.match(/<section[^>]*class=["'][^"']*question/gi) || []).length;
+  const eventCount = (draft.js.match(/addEventListener/g) || []).length;
+  const addsEventsWithLoop = /(?:forEach|for\s*\(|while\s*\()[\s\S]*addEventListener|addEventListener[\s\S]*(?:forEach|for\s*\(|while\s*\()/i.test(draft.js);
+  const hasLogic = /function\s+\w+|=>|if\s*\(|else\b|for\s*\(|while\s*\(/i.test(draft.js);
+  const hasFeedback = /textContent|innerText|emoji|🎉|✅|❌|audio|sound/i.test(`${draft.html}\n${draft.js}`);
+  setChecklist('#check-questions', questionCount >= 3, '3+ questions');
+  setChecklist('#check-events', eventCount >= 3 || (eventCount >= 1 && addsEventsWithLoop), '3+ events or a loop that adds events');
+  setChecklist('#check-logic', hasLogic, 'Answer-checking logic');
+  setChecklist('#check-feedback', hasFeedback, 'Feedback for the player');
+}
+function saveQuizDraft() {
+  localStorage.setItem('js-field-guide-quiz-draft', JSON.stringify(quizDraft()));
+  $('#quiz-save-message').textContent = 'Saved on this device ✓';
+}
+function loadQuizDraft() {
+  const saved = localStorage.getItem('js-field-guide-quiz-draft');
+  if (!saved) return;
+  try {
+    const draft = JSON.parse(saved);
+    ['html', 'css', 'js', 'idea', 'outcome', 'interaction'].forEach(key => {
+      const field = $(`#quiz-${key}`);
+      if (field && typeof draft[key] === 'string') field.value = draft[key];
+    });
+  } catch { localStorage.removeItem('js-field-guide-quiz-draft'); }
+}
+$('#check-quiz').addEventListener('click', checkQuizDraft);
+$('#save-quiz').addEventListener('click', saveQuizDraft);
+loadQuizDraft();
+showQuizTab('html');
+
 const copyText = {
   energy: `if (energyLevel < 60) {\n  activity = "rest";\n} else if (energyLevel < 80) {\n  activity = "snack";\n} else {\n  activity = "create";\n}`,
   prompt: () => $('#prompt-output').textContent
