@@ -15,7 +15,7 @@
     <a class="skip" href="#main">Skip to content</a>
     <header class="topbar">
       <a class="brand" href="#top"><span>{ }</span> FIELD GUIDE <b>/ JS</b></a>
-      <nav aria-label="Guide navigation"><a href="#state">State</a><a href="#logic">Logic</a><a href="#lab">Lab</a></nav>
+      <nav aria-label="Guide navigation"><a href="#state">State</a><a href="#logic">Logic</a><a href="#functions">Functions</a><a href="#loops">Loops</a></nav>
     </header>
 
     <main id="main">
@@ -41,8 +41,9 @@ button.<span>addEventListener</span>("click", () =&gt; {
         <a href="#concepts"><span>01</span> Starter toolkit</a>
         <a href="#state"><span>02</span> Variables & state</a>
         <a href="#logic"><span>03</span> if / else</a>
-        <a href="#lab"><span>04</span> Live lamp lab</a>
-        <a href="#ai"><span>05</span> Explain to AI</a>
+        <a href="#functions"><span>04</span> Functions</a>
+        <a href="#loops"><span>05</span> Loops</a>
+        <a href="#ai"><span>06</span> Explain to AI</a>
       </div></nav>
 
       <section id="concepts" class="wrap lab">
@@ -104,51 +105,69 @@ isLightOn = true;</code></pre>
       <section id="logic" class="reference-section"><div class="wrap lab">
         <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
         <div class="logic-grid">
-          <article class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>script.js</span><button class="copy-button" data-copy="ifElse">Copy code ⧉</button></div><pre><code><b>if</b> (isLightOn) {
-  lampStatus.textContent = "ON";
-  lamp.classList.add("glowing");
+          <article class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>script.js</span><button class="copy-button" data-copy="energy">Copy code ⧉</button></div><pre><code><b>if</b> (energyLevel &lt; 60) {
+  activity = "rest";
+} <b>else if</b> (energyLevel &lt; 80) {
+  activity = "snack";
 } <b>else</b> {
-  lampStatus.textContent = "OFF";
-  lamp.classList.remove("glowing");
+  activity = "create";
 }</code></pre></article>
           <article class="decision-card">
-            <div><span class="answer true">TRUE</span><p><b>If the light is on</b><br>show ON and add the glow.</p></div>
-            <div><span class="answer false">FALSE</span><p><b>Otherwise</b><br>show OFF and remove the glow.</p></div>
-            <p class="tip-text">Read it aloud: “If this is true, do this. Otherwise, do that.”</p>
+            <div><span class="answer true">IF</span><p><b>Below 60</b><br>Choose rest.</p></div>
+            <div><span class="answer false">ELSE IF</span><p><b>60–79</b><br>Choose a snack.</p></div>
+            <div><span class="answer">ELSE</span><p><b>80 or more</b><br>Choose create.</p></div>
+            <p class="tip-text">Read it aloud: “If this is true, do this. Otherwise, check the next question.”</p>
           </article>
+        </div>
+        <article class="energy-demo" aria-labelledby="energy-demo-title"><div><p class="mini-label">TRY IT</p><h3 id="energy-demo-title">Set an energy level.</h3><label class="energy-range" for="energy-range">energyLevel: <output id="energy-number">80</output><input id="energy-range" type="range" min="0" max="100" value="80"></label></div><output id="energy-output" class="energy-output" aria-live="polite">80 → activity = "create"</output></article>
+      </div></section>
+
+      <section id="functions" class="wrap lab">
+        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">FUNCTIONS: INPUTS AND OUTPUTS</p><h2>Give a function something. Get a result.</h2></div><p>Inputs go in.<br>Outputs come back.</p></header>
+        <div class="function-grid">
+          <article class="function-card">
+            <p class="mini-label">PARAMETERS VS ARGUMENTS</p><h3>Recipe blanks and real ingredients.</h3><pre><code>function makePizza(crust) {
+  return "Pizza with " + crust;
+}
+
+makePizza("thin");</code></pre><p><code>crust</code> is a <b>parameter</b>: a blank in the recipe. <code>"thin"</code> is an <b>argument</b>: the real value you give it.</p>
+          </article>
+          <article class="converter-card">
+            <p class="mini-label">TRY A FUNCTION</p><h3>Temperature converter</h3><pre><code>function celsiusToFahrenheit(c) {
+  return (c * 9 / 5) + 32;
+}</code></pre><label for="celsius-input">Input: Celsius <input id="celsius-input" type="number" value="15" inputmode="decimal"></label><button id="convert-temperature" class="secondary" type="button">Run function()</button><output id="temperature-output" aria-live="polite">15°C → 59°F</output><p>The number in <code>c</code> is the input. <code>return</code> sends the answer back out.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="loops" class="reference-section"><div class="wrap lab">
+        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">LOOPS</p><h2>Repeat a step on purpose.</h2></div><p>A loop repeats.<br>A condition stops it.</p></header>
+        <div class="loop-grid">
+          <article class="loop-card for-card"><p class="mini-label"><code>for</code> LOOP</p><h3>Use it when you know the list.</h3><pre><code>let students = ["Alicia", "Jocelyn", "Zihao"];
+
+for (let i = 0; i &lt; students.length; i++) {
+  console.log(students[i]);
+}</code></pre><button id="run-for-loop" type="button">Run the list</button><output id="for-output" aria-live="polite">Ready to find students.</output></article>
+          <article class="loop-card while-card"><p class="mini-label"><code>while</code> LOOP</p><h3>Use it while a condition is true.</h3><pre><code>let count = 3;
+
+while (count &gt; 0) {
+  console.log(count);
+  count = count - 1;
+}</code></pre><button id="run-while-loop" type="button">Run the countdown</button><output id="while-output" aria-live="polite">Ready to count down.</output><p class="loop-warning">Important: change something inside a <code>while</code> loop, or it may never stop.</p></article>
         </div>
       </div></section>
 
-      <section id="lab" class="wrap lab">
-        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">LIVE INTERACTION LAB</p><h2>Make the lamp change state.</h2></div><p>Click the button.<br>Then read the code.</p></header>
-        <div class="lamp-lab">
-          <article class="lamp-stage" id="lamp-stage">
-            <p class="mini-label">BROWSER PREVIEW</p>
-            <div id="lamp" class="lamp" aria-hidden="true"><span class="bulb"></span><span class="stem"></span><span class="base"></span></div>
-            <p id="lamp-status" class="lamp-status" aria-live="polite">The lamp is OFF</p>
-            <button id="lamp-button" class="lamp-button" type="button">Turn lamp on</button>
-            <p class="event-caption"><code>click</code> is the event that starts the change.</p>
-          </article>
-          <article class="live-code">
-            <div class="code-tabs" role="tablist" aria-label="Choose code file"><button type="button" role="tab" aria-selected="true" data-tab="html">index.html</button><button type="button" role="tab" aria-selected="false" data-tab="css">style.css</button><button type="button" role="tab" aria-selected="false" data-tab="js">script.js</button></div>
-            <pre id="lab-code" aria-live="polite"></pre>
-            <p id="code-explanation" class="code-explanation">HTML creates the objects JavaScript will find and change.</p>
-          </article>
-        </div>
-        <div class="steps"><div><b>1</b><p><strong>Event</strong><br>Someone clicks.</p></div><div><b>2</b><p><strong>State</strong><br><code>isLightOn</code> flips.</p></div><div><b>3</b><p><strong>Update</strong><br>The screen responds.</p></div></div>
-      </section>
-
       <section id="ai" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
+        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
         <div class="ai-grid">
           <article class="prompt-builder">
             <h3>Build a useful prompt</h3>
-            <label>What changes?<input id="prompt-state" value="a lamp turns on and off"></label>
-            <label>What starts the change?<input id="prompt-trigger" value="the user clicks #lampButton"></label>
-            <label>What should people see?<input id="prompt-result" value="#lampStatus says ON or OFF"></label>
+            <label>What changes?<input id="prompt-state" value="a temperature in Celsius becomes Fahrenheit"></label>
+            <label>What starts the change?<input id="prompt-trigger" value="the user clicks a Convert button"></label>
+            <label>What should people see?<input id="prompt-result" value="the converted temperature on the page"></label>
             <button id="build-prompt" class="secondary" type="button">Update prompt</button>
           </article>
-          <article class="prompt-result"><p class="mini-label">COPY THIS INTO CODEX AI</p><pre id="prompt-output">I am making a lamp toggle in HTML, CSS, and JavaScript. Use a boolean named isLightOn. When the user clicks #lampButton, switch the state and update #lampStatus to say ON or OFF. Explain each JavaScript line for a beginner.</pre><button class="copy-button" data-copy="prompt">Copy prompt ⧉</button></article>
+          <article class="prompt-result"><p class="mini-label">COPY THIS INTO CODEX AI</p><pre id="prompt-output">I am building an interactive web page in HTML, CSS, and JavaScript. I want a temperature in Celsius to become Fahrenheit. When the user clicks a Convert button, show the converted temperature on the page. Use clear variable names and explain each JavaScript line for a beginner.</pre><button class="copy-button" data-copy="prompt">Copy prompt ⧉</button></article>
         </div>
       </div></section>
 

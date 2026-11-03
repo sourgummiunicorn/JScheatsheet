@@ -1,47 +1,6 @@
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
 
-const lamp = $('#lamp');
-const lampButton = $('#lamp-button');
-const lampStatus = $('#lamp-status');
-let isLightOn = false;
-
-function updateLamp() {
-  lamp.classList.toggle('glowing', isLightOn);
-  lampStatus.textContent = `The lamp is ${isLightOn ? 'ON' : 'OFF'}`;
-  lampButton.textContent = isLightOn ? 'Turn lamp off' : 'Turn lamp on';
-  lampButton.setAttribute('aria-pressed', String(isLightOn));
-}
-
-lampButton.addEventListener('click', () => {
-  isLightOn = !isLightOn;
-  updateLamp();
-});
-
-const labFiles = {
-  html: {
-    code: `<button id="lamp-button">Turn lamp on</button>\n<p id="lamp-status">The lamp is OFF</p>`,
-    explanation: 'HTML creates the button and status message. Their IDs give JavaScript a way to find them.'
-  },
-  css: {
-    code: `.lamp.glowing .bulb {\n  background: #ffdc5a;\n  box-shadow: 0 0 36px #ffbb37;\n}`,
-    explanation: 'CSS decides how the lamp looks when JavaScript adds the glowing class.'
-  },
-  js: {
-    code: `let isLightOn = false;\n\nlampButton.addEventListener("click", () => {\n  isLightOn = !isLightOn;\n  updateLamp();\n});`,
-    explanation: 'JavaScript listens for a click, flips the boolean, then updates the page.'
-  }
-};
-
-function showTab(name) {
-  $$('.code-tabs button').forEach(button => button.setAttribute('aria-selected', String(button.dataset.tab === name)));
-  $('#lab-code').textContent = labFiles[name].code;
-  $('#code-explanation').textContent = labFiles[name].explanation;
-}
-
-$$('.code-tabs button').forEach(button => button.addEventListener('click', () => showTab(button.dataset.tab)));
-showTab('html');
-
 $$('.concept-try').forEach(button => button.addEventListener('click', () => {
   const play = $(`#play-${button.dataset.play}`);
   const isOpen = button.getAttribute('aria-expanded') === 'true';
@@ -82,6 +41,35 @@ showComparison('converted');
 function updateScore() { const score = Number($('#score-range').value); $('#score-output').textContent = `${score} → ${score > 50 ? 'Pass!' : 'Keep trying!'}`; }
 $('#score-range').addEventListener('input', updateScore);
 
+function updateEnergy() {
+  const energy = Number($('#energy-range').value);
+  const activity = energy < 60 ? 'rest' : energy < 80 ? 'snack' : 'create';
+  $('#energy-number').textContent = energy;
+  $('#energy-output').textContent = `${energy} → activity = "${activity}"`;
+}
+$('#energy-range').addEventListener('input', updateEnergy);
+
+function celsiusToFahrenheit(celsius) { return (celsius * 9 / 5) + 32; }
+$('#convert-temperature').addEventListener('click', () => {
+  const celsius = Number($('#celsius-input').value);
+  const fahrenheit = celsiusToFahrenheit(celsius);
+  $('#temperature-output').textContent = `${celsius}°C → ${fahrenheit}°F`;
+});
+
+$('#run-for-loop').addEventListener('click', () => {
+  const students = ['Alicia', 'Jocelyn', 'Zihao'];
+  const found = [];
+  for (let i = 0; i < students.length; i += 1) found.push(students[i]);
+  $('#for-output').textContent = `Found: ${found.join(', ')}`;
+});
+
+$('#run-while-loop').addEventListener('click', () => {
+  let count = 3;
+  const countdown = [];
+  while (count > 0) { countdown.push(count); count -= 1; }
+  $('#while-output').textContent = `${countdown.join(' → ')} → done!`;
+});
+
 $('#cheer-button').addEventListener('click', () => { const name = $('#cheer-name').value.trim() || 'friend'; $('#cheer-output').textContent = `Go, ${name}!`; });
 
 const fruits = ['apple', 'banana'];
@@ -100,7 +88,7 @@ function buildPrompt() {
 $('#build-prompt').addEventListener('click', buildPrompt);
 
 const copyText = {
-  ifElse: `if (isLightOn) {\n  lampStatus.textContent = "ON";\n  lamp.classList.add("glowing");\n} else {\n  lampStatus.textContent = "OFF";\n  lamp.classList.remove("glowing");\n}`,
+  energy: `if (energyLevel < 60) {\n  activity = "rest";\n} else if (energyLevel < 80) {\n  activity = "snack";\n} else {\n  activity = "create";\n}`,
   prompt: () => $('#prompt-output').textContent
 };
 
