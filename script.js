@@ -57,7 +57,7 @@ $('#convert-temperature').addEventListener('click', () => {
 });
 
 $('#run-for-loop').addEventListener('click', () => {
-  const students = ['Alicia', 'Jocelyn', 'Zihao'];
+  const students = ['Yixin', 'Sarah', 'Erin', 'June', 'Xiran'];
   const found = [];
   for (let i = 0; i < students.length; i += 1) found.push(students[i]);
   $('#for-output').textContent = `Found: ${found.join(', ')}`;
