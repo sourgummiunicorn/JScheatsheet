@@ -1,6 +1,20 @@
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
 
+const themeToggle = $('#theme-toggle');
+function setTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  themeToggle.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+  themeToggle.querySelector('.theme-icon').textContent = isDark ? '🌙' : '💡';
+  themeToggle.querySelector('.theme-label').textContent = isDark ? 'Dark' : 'Light';
+  localStorage.setItem('js-field-guide-theme', theme);
+}
+themeToggle.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+setTheme(localStorage.getItem('js-field-guide-theme') || 'light');
+
 $$('.concept-try').forEach(button => button.addEventListener('click', () => {
   const play = $(`#play-${button.dataset.play}`);
   const isOpen = button.getAttribute('aria-expanded') === 'true';
