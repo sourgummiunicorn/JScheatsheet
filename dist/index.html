@@ -28,12 +28,14 @@
         </div>
         <aside class="hero-card" aria-label="JavaScript idea preview">
           <div class="window-bar"><i></i><i></i><i></i><span>script.js</span></div>
-          <pre><code><b>let</b> isLightOn = <em>false</em>;
+          <pre><code><b>let</b> candies = 3;
 
-button.<span>addEventListener</span>("click", () =&gt; {
-  isLightOn = !isLightOn;
-});</code></pre>
-          <p>One variable keeps track of the current state. A click changes it.</p>
+button.<span>addEventListener</span>("click", addCandy);
+
+<b>function</b> addCandy() {
+  candies = candies + 1;
+}</code></pre>
+          <p>JavaScript remembers a number, listens for a click, and runs a named set of steps.</p>
         </aside>
       </section>
 
