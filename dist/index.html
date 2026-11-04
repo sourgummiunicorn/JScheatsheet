@@ -174,21 +174,11 @@ while (count &gt; 0) {
       </div></section>
 
       <section id="quiz-builder" class="wrap lab">
-        <header class="section-heading"><div class="section-number">07</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Build a quiz with personality.</h2></div><p>Plan it. Code it.<br>Make it playful.</p></header>
-        <div class="quiz-brief">
-          <article><p class="mini-label">GOAL</p><h3>Turn questions into a small game.</h3><p>Create an interactive quiz that teaches something in a playful way. It could feel like a game show, mystery, personality test, or something entirely yours.</p></article>
-          <article><p class="mini-label">PLANNING</p><h3>Decide before you code.</h3><ul><li>What should players learn?</li><li>Who is the quiz for?</li><li>Will they click, press keys, or discover surprises?</li></ul></article>
-          <article><p class="mini-label">REQUIREMENTS</p><h3>Your quiz needs:</h3><ul><li>3+ multiple-choice questions</li><li>3+ event listeners</li><li>Functions, loops, or conditionals</li><li>Feedback: text, emoji, or sound</li></ul></article>
-        </div>
-        <div class="quiz-plan">
-          <label>Quiz idea<input id="quiz-idea" placeholder="Example: A spooky movie trivia game"></label>
-          <label>Learning outcome<input id="quiz-outcome" placeholder="Example: Players identify three film genres"></label>
-          <label>Interaction plan<input id="quiz-interaction" placeholder="Example: Click choices and reveal a clue"></label>
-        </div>
-        <div class="quiz-workspace">
-          <div class="quiz-tabs" role="tablist" aria-label="Choose a code file to write"><button type="button" role="tab" aria-selected="true" data-quiz-tab="html">index.html</button><button type="button" role="tab" aria-selected="false" data-quiz-tab="css">style.css</button><button type="button" role="tab" aria-selected="false" data-quiz-tab="js">script.js</button></div>
-          <div class="quiz-editor">
-            <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" data-quiz-code="html" spellcheck="false">&lt;!-- STEP 1: Change the topic and questions below. --&gt;
+        <header class="section-heading"><div class="section-number">07</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Customize a quiz that already works.</h2></div><p>Make it yours.<br>Then download it.</p></header>
+        <div class="quiz-simple-intro"><p><strong>Good news:</strong> this starter is already connected and working. Move from top to bottom. You only need to change a few words in each file.</p></div>
+        <div class="quiz-files">
+          <article class="quiz-file"><header><p class="mini-label">MISSION 1 · INDEX.HTML</p><h3>Make it yours.</h3><p>Change the title, three questions, and answer words. Keep the <code>class</code> and <code>data-correct</code> parts as they are.</p></header>
+            <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" spellcheck="false">&lt;!-- Change the words. Keep the class and data-correct parts. --&gt;
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
 &lt;head&gt;
@@ -220,8 +210,9 @@ while (count &gt; 0) {
     &lt;/section&gt;
   &lt;/main&gt;
 &lt;/body&gt;
-&lt;/html&gt;</textarea>
-            <label class="sr-only" for="quiz-css">CSS quiz draft</label><textarea id="quiz-css" class="quiz-code" data-quiz-code="css" spellcheck="false" hidden>/* STEP 3: Give your quiz a personality. */
+&lt;/html&gt;</textarea></article>
+          <article class="quiz-file"><header><p class="mini-label">MISSION 2 · STYLE.CSS</p><h3>Make it pretty.</h3><p>Try changing only the background color and button color first. There is no wrong color choice.</p></header>
+            <label class="sr-only" for="quiz-css">CSS quiz draft</label><textarea id="quiz-css" class="quiz-code" spellcheck="false">/* Change these colors to match your quiz idea. */
 body {
   font-family: sans-serif;
   background: peachpuff;
@@ -234,8 +225,10 @@ body {
 .answer {
   margin: .25rem;
   padding: .5rem;
-}</textarea>
-            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" data-quiz-code="js" spellcheck="false">// STEP 4: Find the buttons and feedback message.
+  background: white;
+}</textarea></article>
+          <article class="quiz-file"><header><p class="mini-label">MISSION 3 · SCRIPT.JS</p><h3>Choose your responses.</h3><p>This part already works. Change only the two messages inside quotation marks, then read the rest like a recipe.</p></header>
+            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" spellcheck="false">// This code is ready. Change only the feedback words first.
 const answers = document.querySelectorAll(".answer");
 const feedback = document.querySelector("#feedback");
 
@@ -253,11 +246,9 @@ function checkAnswer(event) {
 // STEP 6: A loop gives every answer button a click listener.
 answers.forEach(function (answer) {
   answer.addEventListener("click", checkAnswer);
-});</textarea>
-            <div class="quiz-editor-actions"><button id="check-quiz" class="secondary" type="button">Check my draft</button><button id="download-quiz" class="quiz-save" type="button">Download quiz files ↓</button><output id="quiz-save-message" aria-live="polite"></output></div>
-          </div>
-          <aside class="quiz-checklist" aria-live="polite"><p class="mini-label">FOLLOW THE STEPS</p><h3>Start with the template.</h3><ol class="quiz-steps"><li>Choose a topic you care about.</li><li>Replace the three sample questions.</li><li>Mark the correct choices with <code>data-correct="true"</code>.</li><li>Change the colors and feedback words.</li><li>Test each button, then download your files.</li></ol><p class="mini-label">DRAFT CHECKLIST</p><h3>What have you established?</h3><ul><li id="check-questions">○ 3+ questions</li><li id="check-events">○ 3+ events or a loop that adds events</li><li id="check-logic">○ Answer-checking logic</li><li id="check-feedback">○ Feedback for the player</li></ul><p>Use the starter as your first version. When it feels clear, make it yours.</p></aside>
+});</textarea></article>
         </div>
+        <div class="quiz-download"><div><p class="mini-label">YOU'RE READY</p><h3>Download your project.</h3><p>Your ZIP includes all three files. Open <code>index.html</code> after unzipping to test your quiz.</p></div><div><button id="download-quiz" class="secondary" type="button">Download quiz files ↓</button><output id="quiz-save-message" aria-live="polite"></output></div></div>
       </section>
 
     </main>
