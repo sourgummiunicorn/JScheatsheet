@@ -108,6 +108,23 @@ function quizDraft() {
     js: $('#quiz-js').value
   };
 }
+function renderQuizPreview() {
+  const draft = quizDraft();
+  const htmlWithoutFiles = draft.html
+    .replace(/<link\b[^>]*href=["']style\.css["'][^>]*>/gi, '')
+    .replace(/<script\b[^>]*src=["']script\.js["'][^>]*>\s*<\/script>/gi, '');
+  const safeCss = draft.css.replace(/<\/style/gi, '<\\/style');
+  const safeJs = draft.js.replace(/<\/script/gi, '<\\/script');
+  const withStyles = htmlWithoutFiles.includes('</head>')
+    ? htmlWithoutFiles.replace('</head>', `<style>${safeCss}</style></head>`)
+    : `<style>${safeCss}</style>${htmlWithoutFiles}`;
+  const finishedPreview = withStyles.includes('</body>')
+    ? withStyles.replace('</body>', `<script>${safeJs}</script></body>`)
+    : `${withStyles}<script>${safeJs}</script>`;
+  $('#quiz-preview').srcdoc = finishedPreview;
+}
+[$('#quiz-html'), $('#quiz-css'), $('#quiz-js')].forEach(editor => editor.addEventListener('input', renderQuizPreview));
+renderQuizPreview();
 function crc32(bytes) {
   let crc = 0xffffffff;
   for (const byte of bytes) {

@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
@@ -183,7 +182,6 @@ while (count &gt; 0) {
 &lt;html lang="en"&gt;
 &lt;head&gt;
   &lt;link rel="stylesheet" href="style.css"&gt;
-  &lt;script src="script.js" defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;main class="quiz"&gt;
@@ -209,6 +207,7 @@ while (count &gt; 0) {
       &lt;button class="answer" data-correct="false"&gt;Choice B&lt;/button&gt;
     &lt;/section&gt;
   &lt;/main&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;</textarea></article>
           <article class="quiz-file"><header><p class="mini-label">MISSION 2 · STYLE.CSS</p><h3>Make it pretty.</h3><p>Try changing only the background color and button color first. There is no wrong color choice.</p></header>
@@ -248,10 +247,12 @@ answers.forEach(function (answer) {
   answer.addEventListener("click", checkAnswer);
 });</textarea></article>
         </div>
+        <section class="quiz-preview-card" aria-labelledby="quiz-preview-heading"><div><p class="mini-label">SEE IT CHANGE</p><h3 id="quiz-preview-heading">Your quiz preview</h3><p>Change a word, color, or feedback message above. This preview updates as you type.</p></div><iframe id="quiz-preview" title="Live preview of your quiz" sandbox="allow-scripts"></iframe></section>
         <div class="quiz-download"><div><p class="mini-label">YOU'RE READY</p><h3>Download your project.</h3><p>Your ZIP includes all three files. Open <code>index.html</code> after unzipping to test your quiz.</p></div><div><button id="download-quiz" class="secondary" type="button">Download quiz files ↓</button><output id="quiz-save-message" aria-live="polite"></output></div></div>
       </section>
 
     </main>
     <footer><p>© Iva Li</p></footer>
+    <script src="script.js"></script>
   </body>
 </html>
