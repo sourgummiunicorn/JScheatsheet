@@ -40,12 +40,13 @@ button.<span>addEventListener</span>("click", addCandy);
 
       <nav class="section-nav" aria-label="Learning labs"><div class="wrap nav-inner">
         <a href="#concepts"><span>01</span> Starter toolkit</a>
-        <a href="#state"><span>02</span> Variables & state</a>
-        <a href="#functions"><span>03</span> Functions</a>
-        <a href="#logic"><span>04</span> if / else</a>
-        <a href="#loops"><span>05</span> Loops</a>
-        <a href="#ai"><span>06</span> Explain to AI</a>
-        <a href="#quiz-builder"><span>07</span> Build a quiz</a>
+        <a href="#collections"><span>02</span> Arrays &amp; objects</a>
+        <a href="#state"><span>03</span> Variables & state</a>
+        <a href="#functions"><span>04</span> Functions</a>
+        <a href="#logic"><span>05</span> if / else</a>
+        <a href="#loops"><span>06</span> Loops</a>
+        <a href="#ai"><span>07</span> Explain to AI</a>
+        <a href="#quiz-builder"><span>08</span> Build a quiz</a>
       </div></nav>
 
       <section id="concepts" class="wrap lab">
@@ -69,18 +70,45 @@ let hasEnough = total &gt; 6;</code></pre><p><code>+</code> adds. <code>&gt;</co
 }
 
 cheer("Iva");</code></pre><p>A function packages steps under one name. Call it whenever you want those steps again.</p><div id="play-function" class="concept-play" hidden><p>Give the reusable cheer a new name.</p><div class="tiny-controls"><input id="cheer-name" value="Iva" aria-label="Name to cheer for"><button id="cheer-button" type="button">Run cheer()</button></div><output id="cheer-output">Ready to cheer.</output></div></article>
-          <article class="concept-card eggs"><button class="concept-try" type="button" aria-expanded="false" aria-controls="play-collection" data-play="collection" aria-label="Try the arrays and objects demo">↗</button><span class="concept-icon" aria-hidden="true">🥚</span><p class="mini-label">ARRAYS &amp; OBJECTS</p><h3>A carton and a character card.</h3><pre><code>let fruits = ["apple", "banana"];
-let students = [
-  { name: "Harry", age: 24 },
-  { name: "Judy", age: 25 }
-];</code></pre><p>An array keeps a list in order. An object groups details that belong to the same thing.</p><div id="play-collection" class="concept-play" hidden><p>Add fruit to the list, then inspect one student detail.</p><div class="tiny-controls"><button id="add-fruit" type="button">Add mango</button><button id="show-age" type="button">Show Harry's age</button></div><output id="collection-output">fruits = ["apple", "banana"]</output></div></article>
+          <article class="concept-card eggs"><button class="concept-try" type="button" aria-expanded="false" aria-controls="play-collection" data-play="collection" aria-label="Try the arrays and objects demo">↗</button><span class="concept-icon" aria-hidden="true">🪄</span><p class="mini-label">ARRAYS &amp; OBJECTS</p><h3>A spellbook list and character card.</h3><pre><code>const wizards = ["Harry", "Hermione"];
+const wizard = {
+  name: "Harry", house: "Gryffindor"
+};</code></pre><p>An array keeps a list in order. An object groups details that belong to the same thing.</p><div id="play-collection" class="concept-play" hidden><p>Add a wizard to the list, then inspect one detail.</p><div class="tiny-controls"><button id="add-wizard" type="button">Add Ron</button><button id="show-house" type="button">Show Harry's house</button></div><output id="collection-output">wizards = ["Harry", "Hermione"]</output></div></article>
           <article class="concept-card pizza"><button class="concept-try" type="button" aria-expanded="false" aria-controls="play-io" data-play="io" aria-label="Try the input and output demo">↗</button><span class="concept-icon" aria-hidden="true">🍕</span><p class="mini-label">INPUT &amp; OUTPUT</p><h3>Take an order. Show a result.</h3><pre><code>let topping = prompt("Pick a topping");
 alert("Pizza with " + topping + "!");</code></pre><p><code>prompt</code> listens to a person. <code>alert</code> sends a message back to the screen.</p><div id="play-io" class="concept-play" hidden><p>Give the page input, then see its output.</p><div class="tiny-controls"><input id="topping-input" value="mushrooms" aria-label="Pizza topping"><button id="make-pizza" type="button">Make pizza</button></div><output id="pizza-output">Your order will appear here.</output></div></article>
         </div>
       </section>
 
+      <section id="collections" class="reference-section"><div class="wrap lab">
+        <header class="section-heading"><div class="section-number">02</div><div><p class="eyebrow">ARRAYS AND OBJECTS</p><h2>Lists and character cards.</h2></div><p>An array remembers<br>many things. An object<br>describes one thing.</p></header>
+        <p class="collections-intro">Use an <b>array</b> when order matters. Use an <b>object</b> when details belong together. Here, the data describes a few familiar wizarding-world characters.</p>
+        <div class="collection-grid">
+          <article class="collection-card array-card">
+            <p class="mini-label">ARRAY · A LIST IN ORDER</p><h3>The Hogwarts study group</h3>
+            <pre><code>const wizards = [
+  "Harry", "Hermione", "Ron"
+];
+
+wizards[0]; // "Harry"</code></pre>
+            <dl class="code-key"><div><dt><code>[ ]</code></dt><dd>Square brackets hold the list.</dd></div><div><dt><code>,</code></dt><dd>Commas separate values.</dd></div><div><dt><code>0</code></dt><dd>The first position is index 0.</dd></div></dl>
+          </article>
+          <article class="collection-card object-card">
+            <p class="mini-label">OBJECT · DETAILS IN ONE PLACE</p><h3>One wizard's character card</h3>
+            <pre><code>const wizard = {
+  name: "Hermione",
+  house: "Gryffindor",
+  spell: "Alohomora"
+};
+
+wizard.house; // "Gryffindor"</code></pre>
+            <dl class="code-key"><div><dt><code>{ }</code></dt><dd>Curly braces hold the object.</dd></div><div><dt><code>:</code></dt><dd>A colon connects a key to a value.</dd></div><div><dt><code>,</code></dt><dd>Commas separate properties.</dd></div></dl>
+          </article>
+        </div>
+        <article class="wizard-lab" aria-labelledby="wizard-lab-title"><div><p class="mini-label">TRY THE CHARACTER CARDS</p><h3 id="wizard-lab-title">Choose a wizard.</h3><p>Each button chooses one object from the array and reads its properties.</p></div><div class="wizard-buttons" role="group" aria-label="Choose a wizard"><button type="button" data-wizard="Harry">Harry</button><button type="button" data-wizard="Hermione">Hermione</button><button type="button" data-wizard="Ron">Ron</button></div><output id="wizard-output" aria-live="polite"><code>wizards[0]</code> is Harry → <code>house</code>: Gryffindor · <code>spell</code>: Expelliarmus</output></article>
+      </div></section>
+
       <section id="state" class="wrap lab">
-        <header class="section-heading"><div class="section-number">02</div><div><p class="eyebrow">VARIABLES AND STATE</p><h2>What is true right now?</h2></div><p>A variable gives a name to a value.</p></header>
+        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">VARIABLES AND STATE</p><h2>What is true right now?</h2></div><p>A variable gives a name to a value.</p></header>
         <div class="state-grid">
           <article class="explain-card orange">
             <p class="mini-label">USE <code>let</code></p>
@@ -104,7 +132,7 @@ isLightOn = true;</code></pre>
       </section>
 
       <section id="functions" class="wrap lab">
-        <header class="section-heading"><div class="section-number">03</div><div><p class="eyebrow">FUNCTIONS: INPUTS AND OUTPUTS</p><h2>Give a function something. Get a result.</h2></div><p>Inputs go in.<br>Outputs come back.</p></header>
+        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">FUNCTIONS: INPUTS AND OUTPUTS</p><h2>Give a function something. Get a result.</h2></div><p>Inputs go in.<br>Outputs come back.</p></header>
         <div class="function-grid">
           <article class="function-card">
             <p class="mini-label">PARAMETERS VS ARGUMENTS</p><h3>Recipe blanks and real ingredients.</h3><pre><code>function makePizza(crust) {
@@ -122,7 +150,7 @@ makePizza("thin");</code></pre><p><code>crust</code> is a <b>parameter</b>: a bl
       </section>
 
       <section id="logic" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">04</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
+        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">CONTROL STRUCTURES</p><h2>Choose behavior with a question.</h2></div><p><code>if</code> asks.<br><code>else</code> handles the other case.</p></header>
         <div class="logic-grid">
           <article class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>script.js</span><button class="copy-button" data-copy="energy">Copy code ⧉</button></div><pre><code><b>if</b> (energyLevel &lt; 60) {
   activity = "rest";
@@ -142,7 +170,7 @@ makePizza("thin");</code></pre><p><code>crust</code> is a <b>parameter</b>: a bl
       </div></section>
 
       <section id="loops" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">05</div><div><p class="eyebrow">LOOPS</p><h2>Repeat a step on purpose.</h2></div><p>A loop repeats.<br>A condition stops it.</p></header>
+        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">LOOPS</p><h2>Repeat a step on purpose.</h2></div><p>A loop repeats.<br>A condition stops it.</p></header>
         <div class="loop-grid">
           <article class="loop-card for-card"><p class="mini-label"><code>for</code> LOOP</p><h3>Use it when you know the list.</h3><pre><code>let students = ["Yixin", "Sarah", "Erin", "June", "Xiran"];
 
@@ -159,7 +187,7 @@ while (count &gt; 0) {
       </div></section>
 
       <section id="ai" class="reference-section"><div class="wrap lab">
-        <header class="section-heading"><div class="section-number">06</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
+        <header class="section-heading"><div class="section-number">07</div><div><p class="eyebrow">CODING WITH AI</p><h2>Describe the behavior before you ask.</h2></div><p>Clear thinking makes<br>better prompts.</p></header>
         <div class="ai-grid">
           <article class="prompt-builder">
             <h3>Build a useful prompt</h3>
@@ -173,7 +201,7 @@ while (count &gt; 0) {
       </div></section>
 
       <section id="quiz-builder" class="wrap lab">
-        <header class="section-heading"><div class="section-number">07</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Customize a quiz that already works.</h2></div><p>Make it yours.<br>Then download it.</p></header>
+        <header class="section-heading"><div class="section-number">08</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Customize a quiz that already works.</h2></div><p>Make it yours.<br>Then download it.</p></header>
         <div class="quiz-simple-intro"><p><strong>Good news:</strong> this starter is already connected and working. Move from top to bottom. You only need to change a few words in each file.</p></div>
         <div class="quiz-files">
           <article class="quiz-file"><header><p class="mini-label">MISSION 1 · INDEX.HTML</p><h3>Make it yours.</h3><p>Change the title, three questions, and answer words. Keep the <code>class</code> and <code>data-correct</code> parts as they are.</p></header>

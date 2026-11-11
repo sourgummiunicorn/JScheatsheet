@@ -86,9 +86,21 @@ $('#run-while-loop').addEventListener('click', () => {
 
 $('#cheer-button').addEventListener('click', () => { const name = $('#cheer-name').value.trim() || 'friend'; $('#cheer-output').textContent = `Go, ${name}!`; });
 
-const fruits = ['apple', 'banana'];
-$('#add-fruit').addEventListener('click', () => { if (!fruits.includes('mango')) fruits.push('mango'); $('#collection-output').textContent = `fruits = [${fruits.map(fruit => `"${fruit}"`).join(', ')}]`; });
-$('#show-age').addEventListener('click', () => { $('#collection-output').textContent = 'students[0].age = 24'; });
+const wizards = ['Harry', 'Hermione'];
+$('#add-wizard').addEventListener('click', () => { if (!wizards.includes('Ron')) wizards.push('Ron'); $('#collection-output').textContent = `wizards = [${wizards.map(wizard => `"${wizard}"`).join(', ')}]`; });
+$('#show-house').addEventListener('click', () => { $('#collection-output').textContent = 'wizard.house = "Gryffindor"'; });
+
+const wizardCards = [
+  { name: 'Harry', house: 'Gryffindor', spell: 'Expelliarmus' },
+  { name: 'Hermione', house: 'Gryffindor', spell: 'Alohomora' },
+  { name: 'Ron', house: 'Gryffindor', spell: 'Wingardium Leviosa' }
+];
+function showWizard(name) {
+  const wizard = wizardCards.find(card => card.name === name);
+  const index = wizardCards.indexOf(wizard);
+  $('#wizard-output').innerHTML = `<code>wizards[${index}]</code> is ${wizard.name} → <code>house</code>: ${wizard.house} · <code>spell</code>: ${wizard.spell}`;
+}
+$$('[data-wizard]').forEach(button => button.addEventListener('click', () => showWizard(button.dataset.wizard)));
 
 $('#make-pizza').addEventListener('click', () => { const topping = $('#topping-input').value.trim() || 'cheese'; $('#pizza-output').textContent = `Pizza with ${topping} is ready!`; });
 
