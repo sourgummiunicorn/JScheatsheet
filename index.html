@@ -71,6 +71,7 @@ let hasEnough = total &gt; 6;</code></pre><p><code>+</code> adds. <code>&gt;</co
 
 cheer("Iva");</code></pre><p>A function packages steps under one name. Call it whenever you want those steps again.</p><div id="play-function" class="concept-play" hidden><p>Give the reusable cheer a new name.</p><div class="tiny-controls"><input id="cheer-name" value="Iva" aria-label="Name to cheer for"><button id="cheer-button" type="button">Run cheer()</button></div><output id="cheer-output">Ready to cheer.</output></div></article>
           <article class="concept-card eggs"><button class="concept-try" type="button" aria-expanded="false" aria-controls="play-collection" data-play="collection" aria-label="Try the arrays and objects demo">↗</button><span class="concept-icon" aria-hidden="true">🪄</span><p class="mini-label">ARRAYS &amp; OBJECTS</p><h3>A spellbook list and character card.</h3><pre><code>const wizards = ["Harry", "Hermione"];
+wizards.push("Ron");
 const wizard = {
   name: "Harry", house: "Gryffindor"
 };</code></pre><p>An array keeps a list in order. An object groups details that belong to the same thing.</p><div id="play-collection" class="concept-play" hidden><p>Add a wizard to the list, then inspect one detail.</p><div class="tiny-controls"><button id="add-wizard" type="button">Add Ron</button><button id="show-house" type="button">Show Harry's house</button></div><output id="collection-output">wizards = ["Harry", "Hermione"]</output></div></article>
@@ -89,8 +90,9 @@ alert("Pizza with " + topping + "!");</code></pre><p><code>prompt</code> listens
   "Harry", "Hermione", "Ron"
 ];
 
+wizards.push("Ron"); // adds Ron to the end
 wizards[0]; // "Harry"</code></pre>
-            <dl class="code-key"><div><dt><code>[ ]</code></dt><dd>Square brackets hold the list.</dd></div><div><dt><code>,</code></dt><dd>Commas separate values.</dd></div><div><dt><code>0</code></dt><dd>The first position is index 0.</dd></div></dl>
+            <dl class="code-key"><div><dt><code>[ ]</code></dt><dd>Square brackets hold the list.</dd></div><div><dt><code>,</code></dt><dd>Commas separate values.</dd></div><div><dt><code>push()</code></dt><dd>The most common way to add an item at the end of an array.</dd></div><div><dt><code>0</code></dt><dd>The first position is index 0.</dd></div></dl>
           </article>
           <article class="collection-card object-card">
             <p class="mini-label">OBJECT · DETAILS IN ONE PLACE</p><h3>One wizard's character card</h3>
