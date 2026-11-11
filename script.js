@@ -102,6 +102,50 @@ function showWizard(name) {
 }
 $$('[data-wizard]').forEach(button => button.addEventListener('click', () => showWizard(button.dataset.wizard)));
 
+const arrayMethodExamples = {
+  pop: {
+    title: 'pop() removes the last wizard',
+    code: 'const wizards = ["Harry", "Hermione", "Ron"];\n\nconst lastWizard = wizards.pop();\n\nconsole.log(lastWizard); // "Ron"\nconsole.log(wizards); // ["Harry", "Hermione"]',
+    explanation: 'pop() takes the final item out of the array and gives it back to us.'
+  },
+  splice: {
+    title: 'splice() changes one position',
+    code: 'const wizards = ["Harry", "Draco", "Hermione"];\n\nwizards.splice(1, 1, "Ron");\n\nconsole.log(wizards); // ["Harry", "Ron", "Hermione"]',
+    explanation: 'splice(1, 1, "Ron") starts at index 1, removes one item, then puts Ron there.'
+  },
+  find: {
+    title: 'find() finds the first match',
+    code: 'const wizards = [\n  { name: "Harry", house: "Gryffindor" },\n  { name: "Draco", house: "Slytherin" }\n];\n\nconst slytherin = wizards.find(function (wizard) {\n  return wizard.house === "Slytherin";\n});\n\nconsole.log(slytherin.name); // "Draco"',
+    explanation: 'find() stops when it finds the first character that passes the test.'
+  },
+  filter: {
+    title: 'filter() makes a smaller list',
+    code: 'const wizards = [\n  { name: "Harry", house: "Gryffindor" },\n  { name: "Hermione", house: "Gryffindor" },\n  { name: "Draco", house: "Slytherin" }\n];\n\nconst gryffindors = wizards.filter(function (wizard) {\n  return wizard.house === "Gryffindor";\n});\n\nconsole.log(gryffindors.length); // 2',
+    explanation: 'filter() checks every item and returns a new array with only the matches.'
+  },
+  forEach: {
+    title: 'forEach() visits every wizard',
+    code: 'const wizards = ["Harry", "Hermione", "Ron"];\n\nwizards.forEach(function (wizard) {\n  console.log("Welcome, " + wizard + "!");\n});',
+    explanation: 'forEach() repeats the same step once for every item in the array.'
+  },
+  sort: {
+    title: 'sort() puts names in order',
+    code: 'const wizards = ["Ron", "Harry", "Hermione"];\n\nwizards.sort();\n\nconsole.log(wizards);\n// ["Harry", "Hermione", "Ron"]',
+    explanation: 'sort() rearranges this list alphabetically. It changes the original array.'
+  }
+};
+const arrayMethodDialog = $('#array-method-dialog');
+let arrayExampleTrigger;
+$$('[data-array-method]').forEach(button => button.addEventListener('click', () => {
+  const example = arrayMethodExamples[button.dataset.arrayMethod];
+  arrayExampleTrigger = button;
+  $('#array-method-title').textContent = example.title;
+  $('#array-method-code').textContent = example.code;
+  $('#array-method-explanation').textContent = example.explanation;
+  arrayMethodDialog.showModal();
+}));
+arrayMethodDialog.addEventListener('close', () => { if (arrayExampleTrigger) arrayExampleTrigger.focus(); });
+
 $('#make-pizza').addEventListener('click', () => { const topping = $('#topping-input').value.trim() || 'cheese'; $('#pizza-output').textContent = `Pizza with ${topping} is ready!`; });
 
 function buildPrompt() {
