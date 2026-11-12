@@ -100,7 +100,6 @@ function showHint() {
 }
 $('#event-hint').addEventListener('mouseover', showHint);
 $('#event-hint').addEventListener('focus', showHint);
-$('#event-hint').addEventListener('click', showHint);
 
 function celsiusToFahrenheit(celsius) { return (celsius * 9 / 5) + 32; }
 $('#convert-temperature').addEventListener('click', () => {
