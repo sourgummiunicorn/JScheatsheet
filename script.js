@@ -90,7 +90,8 @@ function resetWithKey(event) {
 $('#event-key-input').addEventListener('keydown', resetWithKey);
 
 function sayHelloThere() {
-  $('#event-hello-output').textContent = 'Hello there!';
+  const name = $('#event-hello-input').value.trim() || 'there';
+  $('#event-hello-output').textContent = `Hello, ${name}!`;
 }
 $('#event-hello-input').addEventListener('input', sayHelloThere);
 

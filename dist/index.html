@@ -154,8 +154,8 @@ function reset(event) {
           <article class="event-card"><div class="event-card-heading"><div><p class="mini-label">EVENT</p><h3><code>input</code></h3><p>Someone types in a field.</p></div><button class="event-demo-toggle" type="button" aria-expanded="false" aria-controls="event-input-demo" data-event-demo="input" aria-label="Try the input example">&gt;</button></div><div id="event-input-demo" class="event-demo" hidden><pre><code>field.addEventListener("input", sayHello);
 
 function sayHello() {
-  message = "Hello there!";
-}</code></pre><input id="event-hello-input" type="text" placeholder="Type anything" aria-label="Input practice field"><output id="event-hello-output" aria-live="polite">Type something, then say hello.</output></div></article>
+  message = "Hello, " + field.value + "!";
+}</code></pre><input id="event-hello-input" type="text" placeholder="Type your name" aria-label="Your name"><output id="event-hello-output" aria-live="polite">Type your name to say hello.</output></div></article>
           <article class="event-card"><div class="event-card-heading"><div><p class="mini-label">EVENT</p><h3><code>mouseover</code></h3><p>Mouse moves over an item.</p></div><button class="event-demo-toggle" type="button" aria-expanded="false" aria-controls="event-hover-demo" data-event-demo="hover" aria-label="Try the mouseover example">&gt;</button></div><div id="event-hover-demo" class="event-demo" hidden><pre><code>hint.addEventListener("mouseover", showHint);
 
 function showHint() {
