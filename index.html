@@ -237,7 +237,7 @@ while (count &gt; 0) {
         <header class="section-heading"><div class="section-number">08</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Customize a quiz that already works.</h2></div><p>Make it yours.<br>Then download it.</p></header>
         <div class="quiz-simple-intro"><p><strong>Good news:</strong> this starter is already connected and working. Move from top to bottom. You only need to change a few words in each file.</p></div>
         <div class="quiz-files">
-          <article class="quiz-file"><header><p class="mini-label">MISSION 1 · INDEX.HTML</p><h3>Make it yours.</h3><p>Question 1 gets its choices from an array. Question 2 responds while someone types. Question 3 responds to a key. Change the words, but keep the <code>id</code>, <code>class</code>, and <code>data-correct</code> parts as they are.</p></header>
+          <article class="quiz-file"><header><p class="mini-label">MISSION 1 · INDEX.HTML</p><h3>Make it yours.</h3><p>Question 1 gets its choices from an array. Question 2 lets someone type an answer. Question 3 responds to a key. Change the words, but keep the <code>id</code>, <code>class</code>, and <code>data-correct</code> parts as they are.</p></header>
             <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" spellcheck="false">&lt;!-- Change the words. Keep the class and data-correct parts. --&gt;
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
@@ -258,7 +258,6 @@ while (count &gt; 0) {
     &lt;section class="question"&gt;
       &lt;h2&gt;2. Type an answer.&lt;/h2&gt;
       &lt;input id="input-answer" placeholder="Type here"&gt;
-      &lt;p id="input-message"&gt;Start typing!&lt;/p&gt;
     &lt;/section&gt;
 
     &lt;section class="question"&gt;
@@ -291,8 +290,6 @@ body {
 const answerChoices = ["Correct answer", "Another answer"];
 const answerButtons = document.querySelector("#answer-buttons");
 const feedback = document.querySelector("#feedback");
-const inputAnswer = document.querySelector("#input-answer");
-const inputMessage = document.querySelector("#input-message");
 const keyAnswer = document.querySelector("#key-answer");
 const keyMessage = document.querySelector("#key-message");
 
@@ -321,15 +318,12 @@ document.querySelectorAll(".answer").forEach(function (answer) {
   answer.addEventListener("click", checkAnswer);
 });
 
-// STEP 7: input happens every time someone types.
-inputAnswer.addEventListener("input", function () {
-  inputMessage.textContent = "You typed: " + inputAnswer.value;
-});
-
-// STEP 8: keydown happens when someone presses a key.
+// STEP 7: keydown happens when someone presses a key.
 keyAnswer.addEventListener("keydown", function (event) {
   if (event.key.toLowerCase() === "r") {
-    keyMessage.textContent = "✨ You pressed R!";
+    keyMessage.textContent = "✨ You got it!";
+  } else {
+    keyMessage.textContent = "Try again!";
   }
 });</textarea></article>
         </div>
