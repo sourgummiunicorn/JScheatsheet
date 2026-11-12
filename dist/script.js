@@ -96,10 +96,19 @@ function sayHelloThere() {
 $('#event-hello-input').addEventListener('input', sayHelloThere);
 
 function showHint() {
-  $('#event-hover-output').textContent = 'You found it! ✨';
+  const hintOutput = $('#event-hover-output');
+  hintOutput.hidden = false;
+  hintOutput.textContent = 'You found it! ✨';
+}
+function hideHint() {
+  const hintOutput = $('#event-hover-output');
+  hintOutput.hidden = true;
+  hintOutput.textContent = '';
 }
 $('#event-hint').addEventListener('mouseover', showHint);
+$('#event-hint').addEventListener('mouseleave', hideHint);
 $('#event-hint').addEventListener('focus', showHint);
+$('#event-hint').addEventListener('blur', hideHint);
 
 function celsiusToFahrenheit(celsius) { return (celsius * 9 / 5) + 32; }
 $('#convert-temperature').addEventListener('click', () => {
