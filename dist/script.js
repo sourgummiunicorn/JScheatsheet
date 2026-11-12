@@ -63,6 +63,44 @@ function updateEnergy() {
 }
 $('#energy-range').addEventListener('input', updateEnergy);
 
+$$('.event-demo-toggle').forEach(function (button) {
+  button.addEventListener('click', function () {
+    const demo = $(`#event-${button.dataset.eventDemo}-demo`);
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+    button.setAttribute('aria-expanded', String(!isOpen));
+    button.textContent = isOpen ? '>' : '×';
+    demo.hidden = isOpen;
+  });
+});
+
+let eventCandyCount = 3;
+function addEventCandy() {
+  eventCandyCount += 1;
+  $('#event-candy-output').textContent = `Candies: ${eventCandyCount}`;
+}
+$('#event-add-candy').addEventListener('click', addEventCandy);
+
+function resetWithKey(event) {
+  if (event.key.toLowerCase() === 'r') {
+    $('#event-key-output').textContent = 'Reset!';
+  } else {
+    $('#event-key-output').textContent = `You pressed: ${event.key}`;
+  }
+}
+$('#event-key-input').addEventListener('keydown', resetWithKey);
+
+function sayHelloThere() {
+  $('#event-hello-output').textContent = 'Hello there!';
+}
+$('#event-hello-input').addEventListener('input', sayHelloThere);
+
+function showHint() {
+  $('#event-hover-output').textContent = 'You found it! ✨';
+}
+$('#event-hint').addEventListener('mouseover', showHint);
+$('#event-hint').addEventListener('focus', showHint);
+$('#event-hint').addEventListener('click', showHint);
+
 function celsiusToFahrenheit(celsius) { return (celsius * 9 / 5) + 32; }
 $('#convert-temperature').addEventListener('click', () => {
   const celsius = Number($('#celsius-input').value);
