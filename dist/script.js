@@ -40,6 +40,18 @@ $('#candy-plus').addEventListener('click', () => { candyCount += 1; updateCandie
 function updateOperator() { const total = Number($('#operator-range').value); $('#operator-output').textContent = `${total} > 6 is ${total > 6}`; }
 $('#operator-range').addEventListener('input', updateOperator);
 
+const operatorTerms = {
+  equal: 'Equal to: same value (allows type conversion).',
+  'strict-equal': 'Strictly equal to: same value and same data type.',
+  'not-equal': 'Not equal to: different values (allows type conversion).',
+  'strict-not-equal': 'Strictly not equal to: different value or different data type.'
+};
+function showOperatorTerm(name) {
+  $$('[data-operator-term]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.operatorTerm === name)));
+  $('#operator-term-output').textContent = operatorTerms[name];
+}
+$$('[data-operator-term]').forEach(button => button.addEventListener('click', () => showOperatorTerm(button.dataset.operatorTerm)));
+
 const comparisonPairs = {
   converted: { label: '"2" and 2', results: [['==', true], ['===', false], ['!=', false], ['!==', true]] },
   different: { label: '1 and 2', results: [['==', false], ['===', false], ['!=', true], ['!==', true]] }
