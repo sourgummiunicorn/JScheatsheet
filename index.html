@@ -237,7 +237,7 @@ while (count &gt; 0) {
         <header class="section-heading"><div class="section-number">08</div><div><p class="eyebrow">FINAL EXERCISE</p><h2>Customize a quiz that already works.</h2></div><p>Make it yours.<br>Then download it.</p></header>
         <div class="quiz-simple-intro"><p><strong>Good news:</strong> this starter is already connected and working. Move from top to bottom. You only need to change a few words in each file.</p></div>
         <div class="quiz-files">
-          <article class="quiz-file"><header><p class="mini-label">MISSION 1 · INDEX.HTML</p><h3>Make it yours.</h3><p>Change the title, three questions, and answer words. Keep the <code>class</code> and <code>data-correct</code> parts as they are.</p></header>
+          <article class="quiz-file"><header><p class="mini-label">MISSION 1 · INDEX.HTML</p><h3>Make it yours.</h3><p>Question 1 gets its choices from an array. Question 2 responds while someone types. Question 3 responds to a key. Change the words, but keep the <code>id</code>, <code>class</code>, and <code>data-correct</code> parts as they are.</p></header>
             <label class="sr-only" for="quiz-html">HTML quiz draft</label><textarea id="quiz-html" class="quiz-code" spellcheck="false">&lt;!-- Change the words. Keep the class and data-correct parts. --&gt;
 &lt;!doctype html&gt;
 &lt;html lang="en"&gt;
@@ -252,20 +252,19 @@ while (count &gt; 0) {
     &lt;!-- STEP 2: Make each question about your topic. --&gt;
     &lt;section class="question"&gt;
       &lt;h2&gt;1. Which answer is correct?&lt;/h2&gt;
-      &lt;button class="answer" data-correct="true"&gt;Correct answer&lt;/button&gt;
-      &lt;button class="answer" data-correct="false"&gt;Another answer&lt;/button&gt;
+      &lt;div id="answer-buttons"&gt;&lt;/div&gt;
     &lt;/section&gt;
 
     &lt;section class="question"&gt;
-      &lt;h2&gt;2. Write your second question.&lt;/h2&gt;
-      &lt;button class="answer" data-correct="false"&gt;Choice A&lt;/button&gt;
-      &lt;button class="answer" data-correct="true"&gt;Choice B&lt;/button&gt;
+      &lt;h2&gt;2. Type an answer.&lt;/h2&gt;
+      &lt;input id="input-answer" placeholder="Type here"&gt;
+      &lt;p id="input-message"&gt;Start typing!&lt;/p&gt;
     &lt;/section&gt;
 
     &lt;section class="question"&gt;
-      &lt;h2&gt;3. Write your third question.&lt;/h2&gt;
-      &lt;button class="answer" data-correct="true"&gt;Choice A&lt;/button&gt;
-      &lt;button class="answer" data-correct="false"&gt;Choice B&lt;/button&gt;
+      &lt;h2&gt;3. Press the R key.&lt;/h2&gt;
+      &lt;input id="key-answer" placeholder="Click here, then press R"&gt;
+      &lt;p id="key-message"&gt;Ready for a key!&lt;/p&gt;
     &lt;/section&gt;
   &lt;/main&gt;
   &lt;script src="script.js"&gt;&lt;/script&gt;
@@ -287,10 +286,24 @@ body {
   padding: .5rem;
   background: white;
 }</textarea></article>
-          <article class="quiz-file"><header><p class="mini-label">MISSION 3 · SCRIPT.JS</p><h3>Choose your responses.</h3><p>This part already works. Change only the two messages inside quotation marks, then read the rest like a recipe.</p></header>
-            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" spellcheck="false">// This code is ready. Change only the feedback words first.
-const answers = document.querySelectorAll(".answer");
+          <article class="quiz-file"><header><p class="mini-label">MISSION 3 · SCRIPT.JS</p><h3>Choose your responses.</h3><p>This part already works. Change only the messages inside quotation marks, then read the rest like a recipe.</p></header>
+            <label class="sr-only" for="quiz-js">JavaScript quiz draft</label><textarea id="quiz-js" class="quiz-code" spellcheck="false">// This code is ready. Change the answer words in this array first.
+const answerChoices = ["Correct answer", "Another answer"];
+const answerButtons = document.querySelector("#answer-buttons");
 const feedback = document.querySelector("#feedback");
+const inputAnswer = document.querySelector("#input-answer");
+const inputMessage = document.querySelector("#input-message");
+const keyAnswer = document.querySelector("#key-answer");
+const keyMessage = document.querySelector("#key-message");
+
+// STEP 1: A loop turns every array item into a button.
+answerChoices.forEach(function (choice, index) {
+  const button = document.createElement("button");
+  button.className = "answer";
+  button.textContent = choice;
+  button.dataset.correct = index === 0;
+  answerButtons.append(button);
+});
 
 // STEP 5: This function checks one clicked answer.
 function checkAnswer(event) {
@@ -304,8 +317,20 @@ function checkAnswer(event) {
 }
 
 // STEP 6: A loop gives every answer button a click listener.
-answers.forEach(function (answer) {
+document.querySelectorAll(".answer").forEach(function (answer) {
   answer.addEventListener("click", checkAnswer);
+});
+
+// STEP 7: input happens every time someone types.
+inputAnswer.addEventListener("input", function () {
+  inputMessage.textContent = "You typed: " + inputAnswer.value;
+});
+
+// STEP 8: keydown happens when someone presses a key.
+keyAnswer.addEventListener("keydown", function (event) {
+  if (event.key.toLowerCase() === "r") {
+    keyMessage.textContent = "✨ You pressed R!";
+  }
 });</textarea></article>
         </div>
         <section class="quiz-preview-card" aria-labelledby="quiz-preview-heading"><div><p class="mini-label">SEE IT CHANGE</p><h3 id="quiz-preview-heading">Your quiz preview</h3><p>Change a word, color, or feedback message above. This preview updates as you type.</p></div><iframe id="quiz-preview" title="Live preview of your quiz" sandbox="allow-scripts"></iframe></section>
